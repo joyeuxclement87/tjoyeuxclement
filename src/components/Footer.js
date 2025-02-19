@@ -6,25 +6,25 @@ function Footer() {
     {
       name: 'GitHub',
       icon: FaGithub,
-      url: 'https://github.com/yourusername',
+      url: 'https://github.com/joyeuxclement87',
       color: 'hover:bg-gray-800'
     },
     {
       name: 'LinkedIn',
       icon: FaLinkedin,
-      url: 'https://linkedin.com/in/yourusername',
+      url: 'https://www.linkedin.com/in/tuyishimire-joyeux-clement-32418528a/',
       color: 'hover:bg-blue-600'
     },
     {
       name: 'Behance',
       icon: FaBehanceSquare,
-      url: 'https://behance.net/yourusername',
+      url: 'https://www.behance.net/joyeuxclement',
       color: 'hover:bg-blue-700'
     },
     {
       name: 'Instagram',
       icon: FaInstagram,
-      url: 'https://instagram.com/yourusername',
+      url: 'https://www.instagram.com/carpricorn_gboy/',
       color: 'hover:bg-pink-600'
     }
   ];

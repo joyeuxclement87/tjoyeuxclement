@@ -1,4 +1,4 @@
-import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { FiMapPin, FiLinkedin, FiInstagram } from 'react-icons/fi';
 import { BiLogoGithub } from 'react-icons/bi';
