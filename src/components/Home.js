@@ -6,17 +6,20 @@ import { SiBehance } from 'react-icons/si';
 import AnimatedBackground from './AnimatedBackground';
 
 function Home() {
-  const cursorControls = useAnimation();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      cursorControls.start({ x: e.clientX - 20, y: e.clientY - 20 });
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY
+      });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [cursorControls]);
+  }, []);
 
   useEffect(() => {
     const handleMouseOver = () => setIsHovering(true);
@@ -87,40 +90,44 @@ function Home() {
     <div className="relative min-h-screen overflow-hidden bg-background dark:bg-background pt-24 md:pt-32">
       <AnimatedBackground />
       
-      {/* Custom cursor with updated styling */}
+      {/* Updated cursor with better alignment */}
       <div className="hidden md:block">
-        {/* Main cursor dot */}
+        {/* Main dot */}
         <motion.div 
           className="fixed w-3 h-3 bg-gradient-to-r from-blue-500 to-blue-400 
                    rounded-full pointer-events-none z-[100]"
-          animate={{
-            x: cursorControls.x ? cursorControls.x.get() - 6 : 0,
-            y: cursorControls.y ? cursorControls.y.get() - 6 : 0,
+          style={{
+            left: mousePosition.x,
+            top: mousePosition.y,
+            transform: 'translate(-50%, -50%)'
           }}
           transition={{
-            type: "spring",
-            damping: 50,
-            stiffness: 500
+            ease: "linear",
+            duration: 0
           }}
         />
         
-        {/* Cursor ring */}
+        {/* Outer ring */}
         <motion.div 
           className="fixed w-8 h-8 border-2 border-blue-400/50 rounded-full 
                    pointer-events-none z-[100] backdrop-blur-[1px]"
+          style={{
+            left: mousePosition.x,
+            top: mousePosition.y,
+            transform: 'translate(-50%, -50%)'
+          }}
           animate={{
-            x: cursorControls.x ? cursorControls.x.get() - 16 : 0,
-            y: cursorControls.y ? cursorControls.y.get() - 16 : 0,
             scale: isHovering ? 1.5 : 1
           }}
           transition={{
-            type: "spring",
-            damping: 30,
-            stiffness: 200,
             scale: {
               type: "spring",
-              stiffness: 400,
+              stiffness: 300,
               damping: 30
+            },
+            default: {
+              ease: "linear",
+              duration: 0
             }
           }}
         />
