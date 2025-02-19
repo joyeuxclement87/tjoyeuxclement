@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaBehanceSquare, FaInstagram } from 'react-icons/fa';
 
 function Footer() {
   const socialLinks = [
@@ -16,10 +16,10 @@ function Footer() {
       color: 'hover:bg-blue-600'
     },
     {
-      name: 'Twitter',
-      icon: FaTwitter,
-      url: 'https://twitter.com/yourusername',
-      color: 'hover:bg-sky-500'
+      name: 'Behance',
+      icon: FaBehanceSquare,
+      url: 'https://behance.net/yourusername',
+      color: 'hover:bg-blue-700'
     },
     {
       name: 'Instagram',
