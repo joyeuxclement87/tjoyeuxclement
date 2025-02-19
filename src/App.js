@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import Work from './components/FeaturedWork';
+import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
@@ -32,6 +33,7 @@ function App() {
             <Home />
             <About />
             <Work />
+            <Services /> {/* Add Services section here */}
             <Contact />
             <Footer />
             <BackToTop />

@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FiMail, FiMapPin, FiSend, FiLinkedin, FiInstagram } from 'react-icons/fi';
-import { BiLogoGithub } from 'react-icons/bi';
-import { SiBehance } from 'react-icons/si';
+import { FiMail, FiMapPin, FiSend } from 'react-icons/fi';
+
 import { FaWhatsapp } from 'react-icons/fa';
 
 function Contact() {

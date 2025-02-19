@@ -38,7 +38,7 @@ function Navbar() {
       setIsScrolled(window.scrollY > 20);
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'work', 'contact'];
+      const sections = ['home', 'about', 'work', 'services', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -61,14 +61,21 @@ function Navbar() {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Work', href: '#work' },
+    { name: 'Services', href: '#services' }, // Add this line
     { name: 'Contact', href: '#contact' }
   ];
 
-  // Add smooth scroll behavior
+  // Updated smooth scroll behavior with error handling
   const handleClick = (e, href) => {
     e.preventDefault();
     const element = document.querySelector(href);
-    const offset = 80; // Adjust based on your navbar height
+    
+    if (!element) {
+      console.warn(`Element with selector "${href}" not found`);
+      return;
+    }
+
+    const offset = 80;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -76,6 +83,24 @@ function Navbar() {
       top: offsetPosition,
       behavior: "smooth"
     });
+
+    // Close mobile menu if open
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  // Updated scroll to top function for home navigation
+  const scrollToHome = (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    setActiveSection('home');
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
   };
 
   return (
@@ -89,9 +114,10 @@ function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Updated Logo click handler */}
           <motion.a
             href="#home"
+            onClick={scrollToHome}
             className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
           >
@@ -106,7 +132,7 @@ function Navbar() {
               <motion.a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => handleClick(e, link.href)}
+                onClick={(e) => link.name === 'Home' ? scrollToHome(e) : handleClick(e, link.href)}
                 whileHover={{ y: -2 }}
                 className={`text-base font-medium transition-colors duration-300 relative ${
                   activeSection === link.href.slice(1)
@@ -193,7 +219,11 @@ function Navbar() {
               key={link.name}
               href={link.href}
               onClick={(e) => {
-                handleClick(e, link.href);
+                if (link.name === 'Home') {
+                  scrollToHome(e);
+                } else {
+                  handleClick(e, link.href);
+                }
                 setIsMobileMenuOpen(false);
               }}
               whileTap={{ scale: 0.95 }}

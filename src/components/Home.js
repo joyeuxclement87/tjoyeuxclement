@@ -89,23 +89,38 @@ function Home() {
       
       {/* Custom cursor with updated styling */}
       <div className="hidden md:block">
+        {/* Main cursor dot */}
         <motion.div 
-          className="fixed w-4 h-4 bg-blue-500 rounded-full pointer-events-none z-50 mix-blend-difference"
-          animate={cursorControls}
-        />
-        <motion.div 
-          className="fixed w-10 h-10 border-2 border-blue-400/50 rounded-full 
-                   pointer-events-none z-50 mix-blend-difference"
+          className="fixed w-3 h-3 bg-gradient-to-r from-blue-500 to-blue-400 
+                   rounded-full pointer-events-none z-[100]"
           animate={{
-            x: cursorControls.x ? cursorControls.x.get() - 12 : 0,
-            y: cursorControls.y ? cursorControls.y.get() - 12 : 0,
+            x: cursorControls.x ? cursorControls.x.get() - 6 : 0,
+            y: cursorControls.y ? cursorControls.y.get() - 6 : 0,
+          }}
+          transition={{
+            type: "spring",
+            damping: 50,
+            stiffness: 500
+          }}
+        />
+        
+        {/* Cursor ring */}
+        <motion.div 
+          className="fixed w-8 h-8 border-2 border-blue-400/50 rounded-full 
+                   pointer-events-none z-[100] backdrop-blur-[1px]"
+          animate={{
+            x: cursorControls.x ? cursorControls.x.get() - 16 : 0,
+            y: cursorControls.y ? cursorControls.y.get() - 16 : 0,
             scale: isHovering ? 1.5 : 1
           }}
           transition={{
+            type: "spring",
+            damping: 30,
+            stiffness: 200,
             scale: {
               type: "spring",
-              stiffness: 260,
-              damping: 20
+              stiffness: 400,
+              damping: 30
             }
           }}
         />
