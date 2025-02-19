@@ -7,8 +7,7 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home'); // Add activeSection state
-  useScroll(); // Keep the hook if needed for future use, or remove entirely if not needed
-
+  useScroll(); 
   // Define animation variants
   const buttonVariants = {
     initial: { scale: 1 },
@@ -61,7 +60,7 @@ function Navbar() {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Work', href: '#work' },
-    { name: 'Services', href: '#services' }, // Add this line
+    { name: 'Services', href: '#services' }, 
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -169,7 +168,7 @@ function Navbar() {
 
             {/* WhatsApp Button */}
             <motion.a
-              href="https://wa.me/YOUR_NUMBER"
+              href="https://wa.me/+250790478265"
               target="_blank"
               rel="noopener noreferrer"
               variants={buttonVariants}

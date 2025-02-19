@@ -5,22 +5,22 @@ import { SiFigma, SiReact, SiTailwindcss, SiTypescript, SiAdobephotoshop, SiAdob
 function About() {
   const experiences = [
     {
+      year: "2025",
+      role: "Graphics designer",
+      company: "Heza country Tours & Global engineering Agency",
+      description: "Leading Graphics design projects and managing design teams."
+    },
+    {
+      year: "2024",
+      role: "Graphics designer",
+      company: "Sign enginenringE.A",
+      description: "working on digital printing designs such as flyer, banner and business cards. and more.."
+    },
+    {
       year: "2023",
-      role: "Creative Director",
-      company: "Design Studio X",
-      description: "Leading creative projects and managing design teams."
-    },
-    {
-      year: "2021",
-      role: "Senior Frontend Developer",
-      company: "Tech Corp",
-      description: "Building scalable web applications and mentoring junior developers."
-    },
-    {
-      year: "2019",
       role: "UI/UX Designer",
-      company: "Digital Agency",
-      description: "Creating user-centered designs and design systems."
+      company: "Freelance",
+      description: "Creating user-interface designs for mobiles and other devices."
     }
   ];
 
@@ -35,18 +35,18 @@ function About() {
 
   const certifications = [
     {
-      year: "2023",
-      title: "Advanced UI/UX Design & Creative Direction",
-      issuer: "Google & Meta Partnership",
-      credential: "CERT-123-456",
+      year: "2025",
+      title: "12 Months of software engineering with specialization in front-end development",
+      issuer: "ALX-Africa",
+      credential: <a href="https://intranet.alxswe.com/certificates/NS5n2FYz7L">Click to view</a>,
       description: "Mastering modern design principles and creative team leadership"
     },
     {
-      year: "2022",
-      title: "Full-Stack Development & Cloud Architecture",
-      issuer: "AWS & Meta",
-      credential: "CERT-789-101",
-      description: "Advanced web development and cloud infrastructure management"
+      year: "2024",
+      title: "UI/UX Design", 
+      issuer: "Tech A intern",
+      credential: <a href="https://drive.google.com/file/d/1qDTt3l6TZtDcjmMDfU8FxOCPrJ-k6bkN/view?usp=sharing">Click to view</a>,
+      description: "Advanced web design and creating seamless user experiences"
     }
   ];
 
@@ -79,7 +79,7 @@ function About() {
             <div className="bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-gray-800">
               <h3 className="text-2xl font-bold text-gray-100 mb-4">My Journey</h3>
               <p className="text-gray-400 leading-relaxed">
-                With over 5 years of experience in digital design and development, 
+                With over 3 years of experience in Graphics design and development, 
                 I've cultivated a passion for creating seamless user experiences. 
                 Based in Kigali, I bring a unique perspective to every project, 
                 combining East African creativity with global design standards.
@@ -212,7 +212,7 @@ function About() {
                 <p className="text-gray-400 text-sm mb-4">{cert.description}</p>
                 <div className="flex items-center gap-2 text-gray-500">
                   <FiAward className="text-blue-400" size={16} />
-                  <span className="text-sm">Credential ID: {cert.credential}</span>
+                  <span className="text-sm">certificate preview: {cert.credential}</span>
                 </div>
               </motion.div>
             ))}

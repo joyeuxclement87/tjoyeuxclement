@@ -160,6 +160,30 @@ function Home() {
                   <span className="whitespace-nowrap">Available for work</span>
                 </span>
                 
+                {/* Add greeting animation before name */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="text-lg text-blue-400 font-medium mb-2"
+                >
+                  <motion.span
+                    animate={{ rotate: [0, 14, 0] }}
+                    transition={{
+                      duration: 0.6,
+                      ease: "easeInOut",
+                      times: [0, 0.5, 1],
+                      repeat: Infinity,
+                      repeatDelay: 2
+                    }}
+                    className="inline-block"
+                  >
+                    👋
+                  </motion.span>
+                  {" "}
+                  <span className="text-gray-300">Hi there, I'm</span>
+                </motion.p>
+
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight gradient-accent bg-clip-text text-transparent font-display">
                   Clement
                   <br />
@@ -206,9 +230,8 @@ function Home() {
                 className="space-y-4"
               >
                 <p className="text-base text-dark-700 dark:text-light-300 max-w-lg leading-relaxed">
-                  Passionate about creating immersive digital experiences that blend creativity 
-                  Passionate about creating immersive digital experiences that blend creativity 
-                  with technical excellence. Based in Kigali, connecting globally.
+                  Crafting clean, intuitive, and engaging digital
+                  experiences that blend aesthetics with functionality.
                 </p>
 
                 {/* Hero buttons  */}
@@ -248,21 +271,31 @@ function Home() {
                   className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-400/20 blur-xl"
                 />
                 
-                {/* Profile image container */}
-                <motion.div
-                  className="relative  rounded-xl overflow-hidden border border-blue-500/20"
-                  whileHover={{ 
-                    scale: 1.02,
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  <img
-                    src="/profile.jpg"
-                    alt="Clement Joyeux"
-                    className="w-full h-full object-cover transform transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 to-transparent" />
-                </motion.div>
+                {/* Profile image container with fixed dimensions */}
+                <div className="relative rounded-xl overflow-hidden border border-blue-500/20">
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.03,
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20
+                    }}
+                    className="relative w-full pb-[100%]"
+                  >
+                    <img
+                      src="/profile.jpg"
+                      alt="Clement Joyeux"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-t from-gray-950/80 to-transparent"
+                      whileHover={{ opacity: 0.6 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.div>
+                </div>
 
                 {/* Stats Card */}
                 <motion.div
@@ -283,11 +316,11 @@ function Home() {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <p className="text-gray-400 text-xs">Experience</p>
-                      <p className="text-lg font-semibold text-white">3+ Years</p>
+                      <p className="text-lg font-semibold text-blue-400">3+ Years</p>
                     </div>
                     <div>
                       <p className="text-gray-400 text-xs">Projects</p>
-                      <p className="text-lg font-semibold text-white">50+</p>
+                      <p className="text-lg font-semibold text-blue-400">50+</p>
                     </div>
                   </div>
                 </motion.div>

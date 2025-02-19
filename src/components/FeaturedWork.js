@@ -8,65 +8,63 @@ function FeaturedWork() {
 
   const projects = [
     {
-      title: "E-Commerce Dashboard",
-      description: "A modern dashboard with real-time analytics and inventory management",
+      title: "Skills exchange platform",
+      description: "A platform for users to exchange skills and services with each other",
       image: "/projects/learnon.png",
-      tech: ["React", "TailwindCSS", "Firebase"],
-      liveLink: "#",
-      githubLink: "#",
+      tech: ["HTML", "Boostrapscss", "Javascript"],
+      liveLink: "https://joyeuxclement87.github.io/LearnOn/",
+      githubLink: "https://github.com/joyeuxclement87/LearnOn.git",
       type: "Featured Project",
       color: "violet"
     },
     {
-      title: "Mobile Banking App",
-      description: "Secure and intuitive mobile banking experience with biometric authentication",
-      image: "/projects/log in.png",
-      tech: ["React Native", "Node.js", "MongoDB"],
-      liveLink: "#",
-      githubLink: "#",
-      type: "Recent Work",
+      title: "Kayce modern shop website",
+      description: "a website for a company that imports, supplies, and sells biscuits and cookies in Rwanda",
+      image: "/projects/kayce.png",
+      tech: ["React Native", "Tailwind css"],
+      liveLink: "https://joyeuxclement87.github.io/kayce_modern_shop-website/",
+      githubLink: "https://github.com/joyeuxclement87/kayce_modern_shop-website.git",
+      type: "Inprogress Project",
       color: "violet"
     },
     {
-      title: "Design System",
-      description: "Comprehensive design system for a major tech company",
+      title: "Logo design for Safety company",
+      description: "creating logo design for a company and visual identity",
       image: "/projects/Safety.jpg",
-      tech: ["Figma", "Design Systems", "Documentation"],
-      liveLink: "#",
-      githubLink: "#",
-      type: "UI/UX Design",
+      tech: ["Adobe illustor", "adobe photoshop"],
+      type: "Graphic Design",
       color: "violet",
-      behanceLink: "#",
-      instagramLink: "#"
-    },
-    {
-      title: "AI Content Platform",
-      description: "AI-powered content generation and management platform",
-      image: "/projects/ai-platform.jpg",
-      tech: ["Next.js", "OpenAI", "Python"],
       liveLink: "#",
       githubLink: "#",
-      type: "Full Stack Project",
+    },
+    {
+      title: "Social media poster for architecture company",
+      description: "creating social media poster for a company",
+      image: "/projects/arch.jpg",
+      tech: ["Adobe illustor", "adobe photoshop"],
+      liveLink: "#",
+      githubLink: "#",
+      type: "Graphic Design",
       color: "violet"
     },
     {
-      title: "Health & Fitness App",
-      description: "Personalized workout and nutrition tracking application",
-      image: "/projects/fitness.jpg",
-      tech: ["React Native", "Firebase", "Machine Learning"],
+      title: "Real Estate Social Media Post",
+      description: "Social media post for a real estate company",
+      image: "/projects/work2.jpg",
+      tech: ["Adobe illustor", "adobe photoshop"],
       liveLink: "#",
       githubLink: "#",
-      type: "Mobile App",
+      type: "Graphic Design",
       color: "violet"
     },
     {
-      title: "NFT Marketplace",
-      description: "Digital marketplace for trading NFT artwork",
-      image: "/projects/nft.jpg",
-      tech: ["Solidity", "Web3.js", "IPFS"],
+      title: "Tourism social media post",
+      description: "Social media post for a tourism company",
+      image: "/projects/tour 1.jpg",
+      tech: ["Adobe illustor", "adobe photoshop"],
       liveLink: "#",
       githubLink: "#",
-      type: "Blockchain",
+      type: "graphic Design",
       color: "violet"
     }
   ];
@@ -76,7 +74,7 @@ function FeaturedWork() {
       return (
         <div className="flex gap-4">
           <motion.a
-            href={project.behanceLink || "#"}
+            href={project.behanceLink || "https://www.behance.net/joyeuxclement"}
             whileHover={{ y: -2 }}
             className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600
                      text-white rounded-lg transition-colors shadow-lg shadow-blue-500/25"
@@ -85,7 +83,7 @@ function FeaturedWork() {
             <span>Behance</span>
           </motion.a>
           <motion.a
-            href={project.instagramLink || "#"}
+            href={project.instagramLink || "https://www.instagram.com/carpricorn_gboy/"}
             whileHover={{ y: -2 }}
             className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r 
                      from-blue-500 to-blue-400
