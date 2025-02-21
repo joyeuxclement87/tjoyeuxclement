@@ -43,7 +43,7 @@ function Home() {
   const socialLinks = [
     { icon: <FiLinkedin size={24} />, url: 'https://www.linkedin.com/in/tuyishimire-joyeux-clement-32418528a/', label: 'LinkedIn', username: '@clemjoyeux' },
     { icon: <BiLogoGithub size={24} />, url: 'https://github.com/joyeuxclement87', label: 'GitHub', username: '@cjoyeux' },
-    { icon: <FiInstagram size={24} />, url: 'https://www.instagram.com/carpricorn_gboy/', label: 'Instagram', username: '@clemjoyeux' },
+    { icon: <FiInstagram size={24}  />, url: 'https://www.instagram.com/carpricorn_gboy/', label: 'Instagram', username: '@clemjoyeux' },
     { icon: <SiBehance size={24} />, url: 'https://www.behance.net/joyeuxclement', label: 'Behance', username: '@clemjoyeux' }
   ];
 
@@ -256,7 +256,7 @@ function Home() {
               </motion.div>
             </div>
 
-            {/* Profile Section - Enhanced animations */}
+            {/* Profile Section */}
             <div className="lg:col-span-5 relative">
               <motion.div
                 variants={profileAnimations}
@@ -328,7 +328,7 @@ function Home() {
             </div>
           </div>
 
-          {/* Social Links Bar - adjusted spacing */}
+          {/* Social Links Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

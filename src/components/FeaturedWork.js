@@ -66,6 +66,16 @@ function FeaturedWork() {
       githubLink: "#",
       type: "graphic Design",
       color: "violet"
+    },
+    {
+      title: "Tourism social media post",
+      description: "Social media post for a tourism company",
+      image: "/projects/logo design.jpg",
+      tech: ["Adobe illustor", "adobe photoshop"],
+      liveLink: "#",
+      githubLink: "#",
+      type: "graphic Design",
+      color: "violet"
     }
   ];
 
@@ -85,9 +95,9 @@ function FeaturedWork() {
           <motion.a
             href={project.instagramLink || "https://www.instagram.com/carpricorn_gboy/"}
             whileHover={{ y: -2 }}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r 
-                     from-blue-500 to-blue-400
-                     text-white rounded-lg transition-colors shadow-lg shadow-blue-500/25"
+            className="flex items-center gap-2 px-4 py-2  
+                      hover:bg-pink-600
+                     text-white rounded-lg transition-colors shadow-lg bg-pink-500 "
           >
             <FiInstagram size={18} />
             <span>Instagram</span>
@@ -152,7 +162,7 @@ function FeaturedWork() {
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-400 mx-auto" />
         </motion.div>
 
-        {/* Projects Grid - Updated Layout */}
+        {/* Projects Grid  */}
         <div className="grid grid-cols-1 gap-24">
           {projects.map((project, index) => (
             <motion.div

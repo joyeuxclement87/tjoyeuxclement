@@ -233,7 +233,7 @@ function Navbar() {
             </motion.a>
           ))}
           <motion.a
-            href="https://wa.me/YOUR_PHONE_NUMBER"
+            href="https://wa.me/+250790478265"
             target="_blank"
             rel="noopener noreferrer"
             whileTap={{ scale: 0.95 }}
