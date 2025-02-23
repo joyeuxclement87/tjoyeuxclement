@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0f1c;
+  --foreground: #f8fafc;
+  --primary: #60a5fa;
+  --secondary: #2563eb;
+  --accent: #3b82f6;
+  --muted: #64748b;
+  --card: #111827;
+  --hover: #1e293b;
+  --success: #22c55e;
+  
+  --gradient-cosmic: linear-gradient(
+    135deg,
+    #60a5fa 0%,
+    #3b82f6 50%,
+    #1d4ed8 100%
+  );
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)];
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(29, 78, 216, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply relative overflow-hidden backdrop-blur-md border border-white/5;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.05)
+    );
+  }
+
+  .hero-button {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 text-lg font-medium 
+           overflow-hidden rounded-lg transition-all duration-500
+           bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]
+           hover:from-[var(--secondary)] hover:to-[var(--primary)];
+  }
+
+  .social-links-container {
+    @apply flex items-center gap-2 p-1.5 backdrop-blur-md 
+           bg-white/5 border border-white/10 rounded-xl;
+  }
+
+  .social-link {
+    @apply relative flex items-center justify-center w-10 h-10 rounded-lg
+           text-white/50 hover:text-white transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r 
+           from-[var(--primary)] to-[var(--secondary)];
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-2 text-sm text-white/70;
+  }
+
+  .status-indicator {
+    @apply relative flex h-2.5 w-2.5;
+  }
+
+  .status-indicator::before {
+    content: '';
+    @apply absolute inline-flex h-full w-full animate-ping 
+           rounded-full bg-[var(--success)] opacity-75;
+  }
+
+  .status-indicator::after {
+    content: '';
+    @apply relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--success)];
+  }
+
+  .background-glow {
+    @apply fixed inset-0 -z-10;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(29, 78, 216, 0.15) 0%, transparent 70%),
+      radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  }
+
+  .download-button {
+    @apply flex items-center gap-2 px-4 py-2.5 
+           bg-white/5 backdrop-blur-sm
+           border border-white/10 rounded-xl
+           text-white/70 hover:text-white
+           transition-all duration-300
+           hover:bg-white/10 hover:border-white/20
+           hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .download-button svg {
+    @apply w-4 h-4 text-[var(--primary)]
+           transition-transform duration-300;
+  }
+
+  .download-button:hover svg {
+    @apply -translate-y-0.5;
+  }
+
+  .download-button span {
+    @apply text-sm font-medium;
+  }
+
+  .work-card {
+    @apply block overflow-hidden rounded-xl
+           bg-white/5 border border-white/10
+           hover:border-white/20 transition-all duration-300
+           backdrop-blur-sm hover:bg-white/10;
+  }
+
+  .project-tag {
+    @apply px-3 py-1 rounded-full text-xs font-medium
+           bg-white/5 text-white/70
+           border border-white/10;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-2 px-5 py-4 transition-all duration-300
+           relative text-white/50 hover:text-white;
+  }
+
+  .nav-item.active {
+    @apply text-white font-medium bg-white/10;
+  }
+
+  .nav-item .icon {
+    @apply w-4 h-4 transition-all duration-300;
+  }
+
+  .nav-item:hover .icon {
+    @apply text-primary transform -translate-y-0.5;
+  }
+
+  .nav-indicator {
+    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-primary
+           transform origin-left transition-transform duration-300;
+  }
+
+  .project-card {
+    @apply relative overflow-hidden rounded-2xl
+           transition-all duration-500;
+  }
+
+  .project-card-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-transparent to-background/90
+           opacity-0 group-hover:opacity-100 transition-opacity duration-500
+           flex items-end p-6;
+  }
+}
