@@ -36,7 +36,8 @@
 
 @layer components {
   .glass-card {
-    @apply relative overflow-hidden backdrop-blur-md border border-white/5;
+    @apply relative overflow-hidden backdrop-blur-md border border-white/5
+           p-4 sm:p-6 lg:p-8; /* Added responsive padding */
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.03),
@@ -45,14 +46,17 @@
   }
 
   .hero-button {
-    @apply relative inline-flex items-center gap-2 px-8 py-4 text-lg font-medium 
-           overflow-hidden rounded-lg transition-all duration-500
+    @apply relative inline-flex items-center gap-2 
+           px-6 py-3 sm:px-8 sm:py-4 /* Responsive padding */
+           text-base sm:text-lg font-medium 
+           overflow-hidden transition-all duration-500
            bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]
-           hover:from-[var(--secondary)] hover:to-[var(--primary)];
+           hover:from-[var(--secondary)] hover:to-[var(--primary)]
+           w-full sm:w-auto justify-center sm:justify-start;
   }
 
   .social-links-container {
-    @apply flex items-center gap-2 p-1.5 backdrop-blur-md 
+    @apply flex items-center gap-1 sm:gap-2 p-1.5 backdrop-blur-md 
            bg-white/5 border border-white/10 rounded-xl;
   }
 
@@ -159,5 +163,17 @@
     @apply absolute inset-0 bg-gradient-to-b from-transparent to-background/90
            opacity-0 group-hover:opacity-100 transition-opacity duration-500
            flex items-end p-6;
+  }
+
+  .sticky-nav {
+    @apply fixed bottom-0 left-0 right-0 sm:bottom-auto sm:top-0;
+    /* Mobile-first bottom navigation */
+    height: auto;
+    max-height: 4rem;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1);
+    
+    @media (min-width: 640px) {
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
   }
 }
