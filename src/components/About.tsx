@@ -141,6 +141,10 @@ export default function About() {
 
             <div className="border-l-2 border-white/10 pl-6 space-y-6">
               <div>
+                <h3 className="text-white/40 text-sm uppercase tracking-wider">Name</h3>
+                <p className="text-lg">Tuyishimire Joyeux Clement</p>
+              </div>
+              <div>
                 <h3 className="text-white/40 text-sm uppercase tracking-wider">Location</h3>
                 <p className="text-lg">Kigali, Rwanda</p>
               </div>

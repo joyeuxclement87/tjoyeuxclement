@@ -141,7 +141,8 @@
 
   .loading-progress {
     @apply h-full w-full bg-gradient-to-r from-primary to-secondary
-           animate-loading-progress origin-left;
+           origin-left;
+    animation: loading-progress 2s ease-in-out infinite;
   }
 
   .loader-gradient {
@@ -170,7 +171,14 @@
            hover:bg-white/20 transition-colors;
   }
 
-  /* Loading Animation */
+  .text-shadow {
+    text-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+  }
+  
+  .hover-glow {
+    @apply hover:shadow-[0_0_20px_rgba(96,165,250,0.3)] transition-shadow duration-300;
+  }
+
   @keyframes loading-progress {
     0% {
       transform: scaleX(0);
@@ -181,37 +189,5 @@
     100% {
       transform: scaleX(1);
     }
-  }
-
-  .animate-loading-progress {
-    animation: loading-progress 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-  }
-
-  .animate-spin-slow {
-    animation: spin 3s linear infinite;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  circle {
-    transition: stroke-dashoffset 0.3s ease;
-    transform-origin: center;
-    transform: rotate(-90deg);
   }
 }

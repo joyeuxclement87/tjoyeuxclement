@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import PageLoader from '@/components/PageLoader';
 import Header from '@/components/Header';
 import Navigation from '@/components/Navigation';
@@ -57,33 +57,36 @@ export default function Home(): JSX.Element {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen relative overflow-hidden font-sans"
-    >
-      <div className="background-glow" />
-      
-      <main className="relative">
-        <Header />
-        <section id="home">
-          <Hero />
-          <div id="nav-anchor">
-            <Navigation isFixed={isNavFixed} activeSection={activeSection} />
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="min-h-screen relative overflow-hidden font-sans"
+      >
+        <div className="background-glow" />
+        
+        <main className="relative">
+          <Header />
+          <section id="home">
+            <Hero />
+            <div id="nav-anchor">
+              <Navigation isFixed={isNavFixed} activeSection={activeSection} />
+            </div>
+          </section>
+
+          <div className={isNavFixed ? 'mt-16' : ''}>
+            <Projects />
+            <About />
+            <Skills />
+            <Contact />
           </div>
-        </section>
+        </main>
 
-        <div className={isNavFixed ? 'mt-16' : ''}>
-          <Projects />
-          <About />
-          <Skills />
-          <Contact />
-        </div>
-      </main>
-
-      <FloatingActions show={isNavFixed} />
-      <Footer />
-    </motion.div>
+        <FloatingActions show={isNavFixed} />
+        <Footer />
+      </motion.div>
+    </AnimatePresence>
   );
 }
