@@ -9,11 +9,15 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center space-y-4 mb-16"
         >
-          <h2 className="text-5xl font-bold font-display">Get in Touch</h2>
-          <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-            Let's discuss your project and create something amazing together
+          <h2 className="text-4xl md:text-5xl font-bold font-display">
+            <span className="text-primary">&lt;/</span>
+            Let's Connect
+            <span className="text-primary">&gt;</span>
+          </h2>
+          <p className="text-white/60 max-w-2xl mx-auto">
+            Ready to start a conversation? Reach out!
           </p>
         </motion.div>
 
@@ -38,14 +42,14 @@ export default function Contact() {
                 {
                   icon: EnvelopeSimple,
                   label: "Email",
-                  value: "tujoyeux21@gmail.com",
-                  href: "mailto:tujoyeux21@gmail.com"
+                  value: "joyeuxclement87@gmail.com",
+                  href: "mailto:joyeuxclement87@gmail.com"
                 },
                 {
                   icon: Phone,
                   label: "Phone",
-                  value: "+250 789 450 189",
-                  href: "tel:+250789450189"
+                  value: "+250 790 478 265",
+                  href: "tel:+250790478265"
                 },
                 {
                   icon: MapPin,

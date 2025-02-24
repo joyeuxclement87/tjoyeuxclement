@@ -1,67 +1,137 @@
 import { FaGithub, FaBehance, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { Download, List, X } from "@phosphor-icons/react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+
+const socialLinks = [
+  { icon: FaGithub, href: "https://github.com", label: "GitHub" },
+  { icon: FaBehance, href: "https://www.behance.net/joyeuxclement", label: "Behance" },
+  { icon: FaLinkedinIn, href: "https://www.linkedin.com", label: "LinkedIn" },
+  { icon: FaInstagram, href: "https://www.instagram.com/carpricorn_gboy/", label: "Instagram" }
+];
 
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <nav className="relative px-4 py-6 lg:px-6 lg:py-8">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-6">
-        {/* Logo */}
-        <a href="/" className="text-xl font-medium tracking-tight hover:text-accent transition-colors">
-          TJCLEMENT
-        </a>
-
-        {/* Center Items */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 sm:ml-auto">
-          <div className="status-badge">
-            <span className="status-indicator" />
-            <span className="hidden sm:inline">Available for brand design projects</span>
-            <span className="sm:hidden">Available</span>
-          </div>
-          <div className="hidden sm:block h-4 w-px bg-zinc-800/50"></div>
-          <a href="/cv.pdf" download className="download-button w-full sm:w-auto justify-center">
-            <svg
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
+    <motion.header 
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="relative z-50 bg-background/50"
+    >
+      <nav className="relative mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <motion.a
+              href="/"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl font-bold tracking-tight hover:text-primary transition-colors"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
-              />
-            </svg>
-            <span>Download CV</span>
-          </a>
-        </div>
+              TJ<span className="text-primary">CLEMENT</span>
+            </motion.a>
 
-        {/* Social Links - Hidden on mobile */}
-        <div className="hidden sm:flex social-links-container">
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="social-links-container"
-          >
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
-              className="social-link">
-              <FaGithub size={18} />
-            </a>
-            <a href="https://www.behance.net/joyeuxclement" target="_blank" rel="noopener noreferrer"
-              className="social-link">
-              <FaBehance size={18} />
-            </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"
-              className="social-link">
-              <FaLinkedinIn size={18} />
-            </a>
-            <a href="https://www.instagram.com/carpricorn_gboy/" target="_blank" rel="noopener noreferrer"
-              className="social-link">
-              <FaInstagram size={18} />
-            </a>
-          </motion.div>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-white/70 hover:text-white md:hidden"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <List size={24} />}
+            </button>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-6">
+              {/* Social Links */}
+              <div className="flex items-center gap-1">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * index }}
+                    className="p-2 text-white/50 hover:text-white transition-colors"
+                    aria-label={social.label}
+                  >
+                    <social.icon size={18} />
+                  </motion.a>
+                ))}
+              </div>
+
+              <div className="w-px h-6 bg-white/10" />
+
+              {/* Download CV Button */}
+              <motion.a
+                href="/cv.pdf"
+                download
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="download-button"
+              >
+                <Download weight="bold" />
+                <span>Download CV</span>
+              </motion.a>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
+                className="md:hidden overflow-hidden"
+              >
+                <div className="pt-4 pb-2">
+                  {/* Social Links */}
+                  <div className="flex items-center justify-center gap-2 p-2 mb-4">
+                    {socialLinks.map((social) => (
+                      <a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 text-white/50 hover:text-white transition-colors
+                          hover:bg-white/5 rounded-lg"
+                        aria-label={social.label}
+                      >
+                        <social.icon size={20} />
+                      </a>
+                    ))}
+                  </div>
+
+                  {/* Download Button */}
+                  <a
+                    href="/cv.pdf"
+                    download
+                    className="flex items-center justify-center gap-2 w-full p-3
+                      text-white/70 hover:text-white transition-colors
+                      hover:bg-white/5 rounded-lg"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Download weight="bold" />
+                    <span>Download CV</span>
+                  </a>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </div>
-    </nav>
+      </nav>
+      
+      {/* Gradient Border */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      
+      {/* Backdrop */}
+      <div className="absolute inset-0 -z-10 backdrop-blur-sm" />
+    </motion.header>
   );
 }

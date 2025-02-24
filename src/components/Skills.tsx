@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code, PaintBrush, Layout, Svg, FigmaLogo, Database } from "@phosphor-icons/react";
+import { Code, PaintBrush, Layout } from "@phosphor-icons/react";
 
 const skills = [
   {
@@ -30,11 +30,15 @@ export default function Skills() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center space-y-4 mb-16"
         >
-          <h2 className="text-5xl font-bold font-display">Skills & Tools</h2>
-          <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-            A comprehensive toolkit that enables me to bring ideas to life
+          <h2 className="text-4xl md:text-5xl font-bold font-display">
+            <span className="text-primary">{"{"}</span>
+            Arsenal & Tools
+            <span className="text-primary">{"}"}</span>
+          </h2>
+          <p className="text-white/60 max-w-2xl mx-auto">
+            The weapons of choice in my creative toolkit
           </p>
         </motion.div>
 
@@ -46,11 +50,14 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="group relative"
+              className="group relative touch-manipulation"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} 
-                blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-              <div className="relative h-full glass-card p-8">
+                blur-2xl opacity-20 sm:opacity-0 
+                sm:group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className="relative h-full glass-card p-8
+                active:scale-[0.99] sm:active:scale-100"
+              >
                 <skill.icon weight="thin" className="w-8 h-8 text-primary mb-6" />
                 <h3 className="text-xl font-display mb-4">{skill.category}</h3>
                 <ul className="space-y-3">
