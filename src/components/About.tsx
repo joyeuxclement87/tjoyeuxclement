@@ -154,7 +154,7 @@ export default function About() {
               </div>
               <div>
                 <h3 className="text-white/40 text-sm uppercase tracking-wider">Experience</h3>
-                <p className="text-lg">5+ Years</p>
+                <p className="text-lg">3+ Years</p>
               </div>
             </div>
           </div>
