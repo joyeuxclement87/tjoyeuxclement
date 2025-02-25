@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const socialLinks = [
-  { icon: FaGithub, href: "https://github.com", label: "GitHub" },
+  { icon: FaGithub, href: "https://github.com/joyeuxclement87", label: "GitHub" },
   { icon: FaBehance, href: "https://www.behance.net/joyeuxclement", label: "Behance" },
-  { icon: FaLinkedinIn, href: "https://www.linkedin.com", label: "LinkedIn" },
+  { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/tuyishimire-joyeux-clement-32418528a/", label: "LinkedIn" },
   { icon: FaInstagram, href: "https://www.instagram.com/carpricorn_gboy/", label: "Instagram" }
 ];
 
