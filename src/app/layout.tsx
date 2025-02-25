@@ -15,8 +15,24 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Tuyishimire Joyeux Clement - Graphic Designer & Brand Identity Expert",
+  title: "Tuyishimire Joyeux Clement - Graphic Designer",
   description: "Portfolio of Tuyishimire Joyeux Clement - Specialist in brand identity design, visual communication, and UI/UX design",
+  icons: {
+    icon: [
+      {
+        url: "/cc.ico",
+        sizes: "any",
+      },
+      {
+        url: "/cc.ico",
+        type: "image/svg+xml",
+      },
+    ],
+    apple: {
+      url: "/cc.ico",
+      sizes: "180x180",
+    },
+  },
 };
 
 export default function RootLayout({
