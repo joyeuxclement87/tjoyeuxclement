@@ -14,7 +14,7 @@ const projects: Project[] = [
   {
     title: "Brand Identity System",
     category: "Branding",
-    image: "/projects/safety.jpg",
+    image: "/projects/Safety.jpg",
     link: "https://www.behance.net/joyeuxclement",
     color: "from-blue-500/20 to-purple-500/20"
   },
