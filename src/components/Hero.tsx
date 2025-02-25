@@ -24,7 +24,7 @@ export default function Hero() {
                 hover:border-white/20 transition-all duration-300"
             >
               <span className="status-indicator" />
-              <span className="text-sm text-white/70">Available for freelance work</span>
+              <span className="text-sm text-white/70">Available for work</span>
             </motion.div>
 
             {/* Main Heading */}
@@ -32,7 +32,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="relative space-y-3" // Reduced spacing
+              className="relative space-y-3"
             >
               <div className="absolute -left-4 -top-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl" />
               <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-secondary/20 rounded-full blur-2xl" />
