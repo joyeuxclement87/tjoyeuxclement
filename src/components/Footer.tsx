@@ -24,7 +24,7 @@ const socialLinks = [
   { 
     name: "Instagram",
     icon: FaInstagram,
-    url: "https://www.instagram.com/carpricorn_gboy/",
+    url: "https://www.instagram.com/capricon_gboy/",
     color: "hover:bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]"
   }
 ];

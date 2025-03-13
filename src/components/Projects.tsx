@@ -29,7 +29,7 @@ const projects: Project[] = [
     title: "Social Media Campaign",
     category: "Graphics",
     image: "/projects/social.jpg",
-    link: "https://www.instagram.com/carpricorn_gboy/",
+    link: "https://www.instagram.com/capricon_gboy/",
     color: "from-orange-500/20 to-red-500/20"
   },
   {
@@ -43,7 +43,7 @@ const projects: Project[] = [
     title: "Printing Design",
     category: "Graphics",
     image: "/projects/print.jpg",
-    link: "https://www.instagram.com/carpricorn_gboy/",
+    link: "https://www.instagram.com/capricon_gboy/",
     color: "from-amber-500/20 to-yellow-500/20"
   },
   {
@@ -57,21 +57,21 @@ const projects: Project[] = [
     title: "NFT Collection Design",
     category: "Graphics",
     image: "/projects/work2.jpg",
-    link: "https://www.instagram.com/carpricorn_gboy/",
+    link: "https://www.instagram.com/capricon_gboy/",
     color: "from-purple-500/20 to-indigo-500/20"
   },
   {
     title: "Real estates Design",
     category: "Graphics",
     image: "/projects/arch.jpg",
-    link: "https://www.instagram.com/carpricorn_gboy/",
+    link: "https://www.instagram.com/capricon_gboy/",
     color: "from-green-500/20 to-emerald-500/20"
   },
   {
     title: "Travel Agency Design",
     category: "Graphics",
     image: "/projects/tour 1.jpg",
-    link: "https://www.instagram.com/carpricorn_gboy/",
+    link: "https://www.instagram.com/capricon_gboy/",
     color: "from-red-500/20 to-orange-500/20"
   }
 ];

@@ -7,7 +7,7 @@ const socialLinks = [
   { icon: FaGithub, href: "https://github.com/joyeuxclement87", label: "GitHub" },
   { icon: FaBehance, href: "https://www.behance.net/joyeuxclement", label: "Behance" },
   { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/tuyishimire-joyeux-clement-32418528a/", label: "LinkedIn" },
-  { icon: FaInstagram, href: "https://www.instagram.com/carpricorn_gboy/", label: "Instagram" }
+  { icon: FaInstagram, href: "https://www.instagram.com/capricon_gboy/", label: "Instagram" }
 ];
 
 export default function Header() {
