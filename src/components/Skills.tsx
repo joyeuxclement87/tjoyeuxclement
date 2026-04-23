@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Code, PaintBrush, Layout } from "@phosphor-icons/react";
 
 const skills = [
@@ -32,11 +32,18 @@ export default function Skills() {
           viewport={{ once: true }}
           className="text-center space-y-4 mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold font-display">
-            <span className="text-primary">{"{"}</span>
+          <div className="flex items-center justify-center mb-6">
+            <h2 className="relative inline-block border border-dashed border-[#f5b915] text-[#f5b915] px-4 py-1 text-sm font-bold tracking-widest uppercase bg-[#f5b915]/5">
+              Skills
+              <span className="absolute -top-1 -left-1 w-2 h-2 border border-[#f5b915] bg-[#004643]" />
+              <span className="absolute -top-1 -right-1 w-2 h-2 border border-[#f5b915] bg-[#004643]" />
+              <span className="absolute -bottom-1 -left-1 w-2 h-2 border border-[#f5b915] bg-[#004643]" />
+              <span className="absolute -bottom-1 -right-1 w-2 h-2 border border-[#f5b915] bg-[#004643]" />
+            </h2>
+          </div>
+          <h3 className="text-4xl md:text-5xl font-bold font-display text-[#f0ede5]">
             Arsenal & Tools
-            <span className="text-primary">{"}"}</span>
-          </h2>
+          </h3>
           <p className="text-white/60 max-w-2xl mx-auto">
             The weapons of choice in my creative toolkit
           </p>

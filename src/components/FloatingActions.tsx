@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { RocketLaunch, Download } from "@phosphor-icons/react";
+import { motion } from "motion/react";
+import { ArrowUpIcon, ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 
 interface FloatingActionsProps {
   show: boolean;
@@ -14,37 +14,37 @@ export default function FloatingActions({ show }: FloatingActionsProps) {
     <motion.div
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: show ? 1 : 0, x: show ? 0 : 20 }}
-      className="fixed right-4 top-2/3 -translate-y-1/2 z-40"
+      className="fixed right-6 lg:right-10 bottom-10 z-40"
     >
-      <div className="flex flex-col gap-3 p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded">
-        {/* Back to Top Button */}
-        <button
-          onClick={scrollToTop}
-          className="w-10 h-10 bg-white/5 border border-white/10
-            hover:bg-white/10 hover:border-white/20 transition-all duration-300
-            flex items-center justify-center group"
-        >
-          <RocketLaunch 
-            weight="bold"
-            className="w-5 h-5 text-white/60 group-hover:text-white 
-              transform -rotate 90 transition-colors duration-300" 
-          />
-        </button>
-
+      <div className="flex flex-col gap-3 p-2 bg-[#004643]/80 backdrop-blur-xl border border-[#f0ede5]/10 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
         {/* Download CV Button */}
         <a
           href="/cv.pdf"
           download
-          className="w-10 h-10 bg-white/5 border border-white/10
-            hover:bg-white/10 hover:border-white/20 transition-all duration-300
+          className="w-12 h-12 bg-white/5 border border-white/5 rounded-full
+            hover:bg-[#f5b915] hover:text-[#004643] transition-all duration-500
             flex items-center justify-center group"
+          title="Download CV"
         >
-          <Download 
-            weight="bold"
-            className="w-5 h-5 text-white/60 group-hover:text-white 
+          <ArrowDownTrayIcon 
+            className="w-5 h-5 text-[#f0ede5] group-hover:text-[#004643] 
               group-hover:-translate-y-0.5 transition-all duration-300" 
-        />
+          />
         </a>
+
+        {/* Back to Top Button */}
+        <button
+          onClick={scrollToTop}
+          className="w-12 h-12 bg-white/5 border border-white/5 rounded-full
+            hover:bg-[#f5b915] hover:text-[#004643] transition-all duration-500
+            flex items-center justify-center group"
+          title="Back to Top"
+        >
+          <ArrowUpIcon 
+            className="w-5 h-5 text-[#f0ede5] group-hover:text-[#004643] 
+              group-hover:-translate-y-1 transition-all duration-300" 
+          />
+        </button>
       </div>
     </motion.div>
   );

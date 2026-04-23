@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0f1c;
-  --foreground: #f8fafc;
-  --primary: #60a5fa;
-  --secondary: #2563eb;
-  --accent: #3b82f6;
-  --muted: #64748b;
-  --card: #111827;
-  --hover: #1e293b;
+  --background: #001a18;
+  --foreground: #f0ede5;
+  --primary: #f0ede5;
+  --secondary: #f0ede5;
+  --accent: #f0ede5;
+  --muted: rgba(240, 237, 229, 0.6);
+  --card: rgba(240, 237, 229, 0.05);
+  --hover: rgba(240, 237, 229, 0.1);
   --success: #22c55e;
   
   --gradient-cosmic: linear-gradient(
@@ -22,11 +22,13 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    @apply bg-[var(--background)] text-[var(--foreground)];
-    background-image: 
-      radial-gradient(circle at 0% 0%, rgba(29, 78, 216, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+    @apply text-[var(--foreground)];
+    background: var(--background);
+    background-attachment: fixed;
   }
 }
 
@@ -82,10 +84,11 @@
   }
 
   .background-glow {
-    @apply fixed inset-0 -z-10;
+    @apply fixed inset-0 -z-10 pointer-events-none;
     background: 
-      radial-gradient(circle at 20% 20%, rgba(29, 78, 216, 0.15) 0%, transparent 70%),
-      radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      radial-gradient(circle at 15% 15%, rgba(245, 185, 21, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 85%, rgba(0, 70, 67, 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(0, 26, 24, 1) 0%, rgba(0, 18, 17, 1) 100%);
   }
 
   .download-button {
