@@ -8,6 +8,7 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Services from '@/components/Projects';
 import About from '@/components/About';
+import Skills from '@/components/Skills';
 import Approach from '@/components/Approach';
 import WorkPreview from '@/components/WorkPreview';
 import Footer from '@/components/Footer';
@@ -54,7 +55,7 @@ export default function Home() {
     const handleScroll = () => {
 
       // Update active section logic
-      const sections = ['home', 'about', 'approach', 'services', 'work', 'contact'];
+      const sections = ['home', 'about', 'skills', 'approach', 'services', 'work', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -95,6 +96,7 @@ export default function Home() {
 
           <div className="mt-0">
             <About />
+            <Skills />
             <Approach />
             <Services />
             <WorkPreview />

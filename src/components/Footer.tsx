@@ -40,7 +40,7 @@ export default function Footer() {
           <h3 className="text-5xl md:text-8xl font-bold font-display text-[#f0ede5] tracking-tight">
             Let’s Work Together
           </h3>
-          <p className="text-xl md:text-2xl text-[#f0ede5]/60 font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-[#f0ede5]/80 font-light max-w-2xl mx-auto leading-relaxed">
             Have a project in mind? I’m open to freelance work and collaborations.
           </p>
           <div className="pt-8">
@@ -67,7 +67,7 @@ export default function Footer() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs uppercase tracking-[0.25em] font-bold text-[#f0ede5]/60 hover:text-[#f5b915] transition-colors"
+                className="text-xs uppercase tracking-[0.25em] font-bold text-[#f0ede5]/80 hover:text-[#f5b915] transition-colors"
               >
                 {social.name}
               </a>
@@ -75,10 +75,10 @@ export default function Footer() {
           </div>
           
           <div className="flex flex-col md:items-end gap-3 mt-8 md:mt-0">
-            <p className="text-[#f0ede5]/50 text-[10px] uppercase tracking-[0.3em] font-bold text-center md:text-right">
+            <p className="text-[#f0ede5]/70 text-[10px] uppercase tracking-[0.3em] font-bold text-center md:text-right">
               © {currentYear} T,joyeux clement. All Rights Reserved.
             </p>
-            <p className="text-[#f0ede5]/30 text-[9px] uppercase tracking-[0.2em] text-center md:text-right">
+            <p className="text-[#f0ede5]/50 text-[9px] uppercase tracking-[0.2em] text-center md:text-right">
               Designed & Built with focus on clarity, structure, and purpose.
             </p>
           </div>

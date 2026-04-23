@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import BoundingBox from "./BoundingBox";
 import ProjectModal from "./ProjectModal";
@@ -52,13 +52,21 @@ const localProjects = [
 export default function WorkPreview() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [sanityProjects, setSanityProjects] = useState<any[]>([]);
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const yFast = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const ySlow = useTransform(scrollYProgress, [0, 1], [0, 50]);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const data = await client.fetch(projectsQuery);
         if (data && data.length > 0) {
-          // Filter to only show featured projects, or just take the first 4
           const featured = data.filter((p: any) => p.featured);
           setSanityProjects(featured.length >= 4 ? featured.slice(0, 4) : data.slice(0, 4));
         }
@@ -72,7 +80,7 @@ export default function WorkPreview() {
   const activeProjects = sanityProjects.length > 0 ? sanityProjects : localProjects;
 
   return (
-    <section id="work" className="py-32 relative">
+    <section ref={containerRef} id="work" className="py-32 relative">
       <div className="max-w-6xl mx-auto px-4 lg:px-8">
         
         {/* Section Header */}
@@ -90,7 +98,7 @@ export default function WorkPreview() {
           <h3 className="text-5xl md:text-6xl font-bold font-display text-[#f0ede5] mb-6 tracking-tight">
             Selected Work
           </h3>
-          <p className="text-xl md:text-2xl text-[#f0ede5]/60 font-light max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-[#f0ede5]/80 font-light max-w-2xl mx-auto">
             A curated look at some of my recent projects, focusing on brand identity, digital experiences, and visual storytelling.
           </p>
         </motion.div>
@@ -100,6 +108,7 @@ export default function WorkPreview() {
           {activeProjects.map((project, idx) => (
             <motion.div
               key={idx}
+              style={{ y: idx % 2 === 0 ? ySlow : yFast }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -112,7 +121,7 @@ export default function WorkPreview() {
                   src={project.image}
                   alt={project.title}
                   fill
-                  className={`object-cover transition-all duration-700 group-hover:scale-[1.06] ${project.bgColor ? '' : 'grayscale group-hover:grayscale-0'}`}
+                  className={`object-cover transition-all duration-700 group-hover:scale-[1.06]`}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {/* Soft fade overlay */}
@@ -129,10 +138,10 @@ export default function WorkPreview() {
                 )}
               </div>
               
-              <div className="space-y-1 px-1 transition-all duration-500 group-hover:-translate-y-2">
-                <h4 className="text-[#f0ede5] font-bold text-xl tracking-tight transition-colors group-hover:text-[#f5b915]">{project.title}</h4>
-                <p className="text-[#f0ede5]/40 text-xs uppercase tracking-[0.2em] font-medium">{project.displayCategory}</p>
-              </div>
+                <div className="space-y-1 px-1 transition-all duration-500 group-hover:-translate-y-2">
+                  <h4 className="text-[#f0ede5] font-bold text-xl tracking-tight transition-colors group-hover:text-[#f5b915]">{project.title}</h4>
+                  <p className="text-[#f0ede5]/60 text-xs uppercase tracking-[0.2em] font-medium">{project.displayCategory}</p>
+                </div>
             </motion.div>
           ))}
         </div>

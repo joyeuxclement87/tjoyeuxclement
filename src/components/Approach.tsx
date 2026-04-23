@@ -26,7 +26,7 @@ export default function Approach() {
               My Approach
             </BoundingBox>
           </div>
-          <p className="text-xl md:text-2xl text-[#f0ede5]/60 font-light max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-[#f0ede5]/80 font-light max-w-2xl mx-auto">
             A proven framework for turning concepts into clear, structured digital experiences.
           </p>
         </motion.div>
@@ -59,7 +59,7 @@ export default function Approach() {
                   {/* Text */}
                   <div className="transition-transform duration-500 group-hover:-translate-y-2">
                     <p className="text-[#f5b915] font-bold text-xl tracking-tight mb-2">{step.text}</p>
-                    <p className="text-[#f0ede5]/50 text-xs uppercase tracking-[0.3em] font-bold">{step.sub}</p>
+                    <p className="text-[#f0ede5]/70 text-xs uppercase tracking-[0.3em] font-bold">{step.sub}</p>
                   </div>
                 </div>
               ))}

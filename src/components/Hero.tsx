@@ -1,4 +1,5 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import Image from "next/image";
 import { ArrowRightIcon, ChatBubbleOvalLeftEllipsisIcon } from "@heroicons/react/24/outline";
 import BoundingBox from "./BoundingBox";
@@ -17,8 +18,19 @@ const particles = [
 ];
 
 export default function Hero() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
   return (
-    <section className="relative min-h-screen bg-[#004643] overflow-hidden flex items-center">
+    <section ref={containerRef} className="relative min-h-screen bg-[#004643] overflow-hidden flex items-center">
       
       {/* Subtle Noise Texture Overlay */}
       <div 
@@ -53,8 +65,9 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Very soft radial glow behind text with very slow background animation */}
+      {/* Very soft radial glow behind text */}
       <motion.div 
+        style={{ y: y2 }}
         animate={{ 
           scale: [1, 1.05, 1],
           opacity: [0.02, 0.04, 0.02]
@@ -70,6 +83,7 @@ export default function Hero() {
       {/* Right Screen Background Image (Desktop) */}
       <div className="hidden lg:block absolute top-0 right-0 w-[55%] h-full z-0">
         <motion.div
+          style={{ y: y1, scale }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
@@ -86,10 +100,10 @@ export default function Hero() {
           {/* Moody overlays tied to color palette */}
           <div className="absolute inset-0 bg-[#004643]/20 mix-blend-multiply" />
           
-          {/* Right -> Left fade gradient so the image smoothly blends into the background */}
+          {/* Right -> Left fade gradient */}
           <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#004643] via-[#004643]/80 to-transparent" />
           
-          {/* Additional edge fades for seamless blending */}
+          {/* Additional edge fades */}
           <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#004643] via-[#004643]/50 to-transparent" />
           <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-[#004643] via-[#004643]/30 to-transparent" />
         </motion.div>
@@ -100,6 +114,7 @@ export default function Hero() {
           
           {/* Left Column - Minimal Content Space */}
           <motion.div
+            style={{ opacity }}
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -122,7 +137,7 @@ export default function Hero() {
             </h1>
 
             {/* Description */}
-            <p className="text-lg md:text-xl text-[#f0ede5]/60 tracking-widest uppercase font-medium relative z-10 mt-6">
+            <p className="text-lg md:text-xl text-[#f0ede5]/75 tracking-widest uppercase font-medium relative z-10 mt-6">
               Graphic design • Web • Print
             </p>
 
@@ -152,6 +167,7 @@ export default function Hero() {
 
           {/* Mobile Image Layer */}
           <motion.div 
+            style={{ y: y1 }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}

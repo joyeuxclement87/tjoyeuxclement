@@ -20,7 +20,7 @@ export default function Services() {
           <h3 className="text-5xl md:text-6xl font-bold font-display text-[#f0ede5] tracking-tight">
             What I Do
           </h3>
-          <p className="text-[#f0ede5]/60 max-w-3xl mx-auto text-xl md:text-2xl font-light pt-4">
+          <p className="text-[#f0ede5]/80 max-w-3xl mx-auto text-xl md:text-2xl font-light pt-4">
             A comprehensive suite of design services tailored to build clear, cohesive, and impactful visual identities.
           </p>
         </motion.div>
@@ -61,7 +61,7 @@ export default function Services() {
               </div>
               <div className="flex-1 space-y-3">
                 <h3 className="text-3xl md:text-4xl font-display font-bold text-white tracking-tight">{cat.title}</h3>
-                <p className="text-[#f0ede5]/60 leading-relaxed font-light text-lg max-w-3xl">{cat.desc}</p>
+                <p className="text-[#f0ede5]/80 leading-relaxed font-light text-lg max-w-3xl">{cat.desc}</p>
               </div>
               <div className="p-5 bg-[#004643] rounded-full border border-white/10 group-hover:bg-[#f5b915] group-hover:border-[#f5b915] transition-all duration-500 self-start md:self-auto hidden md:block">
                 <cat.icon className="w-8 h-8 text-[#f5b915] group-hover:text-[#004643] transition-colors duration-500" />

@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from "motion/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
@@ -8,6 +10,7 @@ const navItems = [
   { name: 'Home', href: '/#home', id: 'home' },
   { name: 'Work', href: '/work', id: 'work' },
   { name: 'About', href: '/#about', id: 'about' },
+  { name: 'Skills', href: '/#skills', id: 'skills' },
   { name: 'Contact', href: '/contact', id: 'contact' },
 ];
 
@@ -45,7 +48,7 @@ export default function Navigation({ activeSection }: { activeSection?: string }
                   key={item.name}
                   href={item.href}
                   className={`text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:text-[#f5b915] relative
-                    ${isActive ? 'text-[#f5b915]' : 'text-[#f0ede5]/40'}`}
+                    ${isActive ? 'text-[#f5b915]' : 'text-[#f0ede5]/60'}`}
                 >
                   {item.name}
                   {isActive && (
