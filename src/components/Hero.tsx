@@ -74,8 +74,7 @@ export default function Hero() {
               left: orb.left,
               width: orb.size,
               height: orb.size,
-              background: `radial-gradient(circle, ${orb.color}15 0%, transparent 70%)`,
-              filter: `blur(${orb.blur}px)`,
+              background: `radial-gradient(circle, ${orb.color}30 0%, transparent 70%)`,
             }}
             animate={{
               y: [0, -60, 0],
@@ -95,7 +94,6 @@ export default function Hero() {
 
       {/* ─── Soft radial glow behind text ─── */}
       <motion.div
-        style={{ y: y2 }}
         animate={{
           scale: [1, 1.05, 1],
           opacity: [0.03, 0.06, 0.03],
@@ -105,7 +103,8 @@ export default function Hero() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-[20%] left-[-10%] w-[800px] h-[800px] bg-[#f0ede5] rounded-full blur-[150px] pointer-events-none z-0"
+        className="absolute top-[20%] left-[-10%] w-[800px] h-[800px] rounded-full pointer-events-none z-0"
+        style={{ y: y2, background: "radial-gradient(circle, #f0ede5 0%, transparent 60%)" }}
       />
 
       {/* ═══════════════════════════════════════════════════
@@ -179,7 +178,7 @@ export default function Hero() {
           MAIN CONTENT
           ═══════════════════════════════════════════════════ */}
       <div className="max-w-7xl mx-auto px-4 lg:px-16 w-full relative z-30 pt-32 pb-12 lg:py-0">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* ─── Left Column ─── */}
           <motion.div
             style={{ opacity }}
@@ -206,7 +205,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: stagger.heading.delay, duration: 0.01 }}
-              className="text-5xl md:text-6xl lg:text-[6rem] font-bold font-display leading-[1.05] text-[#f0ede5] tracking-tighter relative z-10 py-2"
+              className="text-[3.2rem] leading-[1] md:text-6xl lg:text-[6rem] md:leading-[1.05] font-bold font-display text-[#f0ede5] tracking-tighter relative z-10 py-2"
             >
               <span className="overflow-hidden inline-block">
                 <motion.span
@@ -305,19 +304,19 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40, scale: 1.05 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 0.3, duration: 1 }}
-            className="relative h-[60vh] w-[110%] -ml-[5%] lg:hidden mt-8 z-0 rounded-2xl overflow-hidden"
+            className="relative h-[45vh] w-full lg:hidden mt-4 z-0 rounded-3xl overflow-hidden"
           >
             <Image
               src="/hero-image.png"
               alt="Dramatic Portrait"
               fill
-              className="object-cover object-top"
+              className="object-cover object-center"
               priority
               sizes="100vw"
             />
             <div className="absolute inset-0 bg-[#004643]/15 mix-blend-multiply" />
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#004643] to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#004643] to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#004643] to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#004643] to-transparent" />
           </motion.div>
         </div>
       </div>
