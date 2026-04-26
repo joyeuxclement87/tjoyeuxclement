@@ -80,14 +80,23 @@ export default function WorkPreview() {
   const activeProjects = sanityProjects.length > 0 ? sanityProjects : localProjects;
 
   return (
-    <section ref={containerRef} id="work" className="py-32 relative">
+    <section ref={containerRef} id="work" className="py-32 relative overflow-hidden">
+      {/* ─── Floating accent orb ─── */}
+      <motion.div
+        className="absolute top-[20%] left-[-5%] w-[450px] h-[450px] rounded-full pointer-events-none -z-10"
+        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(90px)" }}
+        animate={{ y: [0, -35, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <div className="max-w-6xl mx-auto px-4 lg:px-8">
         
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
           className="mb-20 md:mb-28 flex flex-col items-center text-center"
         >
           <div className="flex items-center mb-6">
@@ -95,12 +104,26 @@ export default function WorkPreview() {
               Featured Work
             </BoundingBox>
           </div>
-          <h3 className="text-5xl md:text-6xl font-bold font-display text-[#f0ede5] mb-6 tracking-tight">
-            Selected Work
-          </h3>
-          <p className="text-xl md:text-2xl text-[#f0ede5]/80 font-light max-w-2xl mx-auto">
+          <div className="overflow-hidden">
+            <motion.h3
+              className="text-5xl md:text-6xl font-bold font-display text-[#f0ede5] mb-6 tracking-tight"
+              initial={{ y: "100%" }}
+              whileInView={{ y: "0%" }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Selected Work
+            </motion.h3>
+          </div>
+          <motion.p
+            className="text-xl md:text-2xl text-[#f0ede5]/80 font-light max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
             A curated look at some of my recent projects, focusing on brand identity, digital experiences, and visual storytelling.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Masonry Grid - 4 items */}
@@ -109,26 +132,28 @@ export default function WorkPreview() {
             <motion.div
               key={idx}
               style={{ y: idx % 2 === 0 ? ySlow : yFast }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.8 }}
-              className="break-inside-avoid group cursor-pointer relative transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-3xl mb-12"
+              transition={{ delay: idx * 0.12, duration: 0.8, ease: "easeOut" }}
+              className="break-inside-avoid group cursor-pointer relative transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)] rounded-3xl mb-12"
               onClick={() => setSelectedProject(project)}
             >
-              <div className={`relative w-full ${project.aspect} overflow-hidden mb-6 rounded-3xl ${project.bgColor || 'bg-white/5'} border border-white/10`}>
+              <div className={`relative w-full ${project.aspect} overflow-hidden mb-6 rounded-3xl ${project.bgColor || 'bg-white/5'} border border-white/10 group-hover:border-[#f5b915]/20 transition-colors duration-500`}>
                 <Image 
                   src={project.image}
                   alt={project.title}
                   fill
-                  className={`object-cover transition-all duration-700 group-hover:scale-[1.06]`}
+                  className="object-cover transition-all duration-700 group-hover:scale-[1.06]"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {/* Soft fade overlay */}
                 <div className="absolute inset-0 bg-[#004643]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8 text-left">
-                  <p className="text-[#f0ede5]/90 text-sm font-light leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-all duration-700">
+                  <motion.p
+                    className="text-[#f0ede5]/90 text-sm font-light leading-relaxed transform translate-y-4 group-hover:translate-y-0 transition-all duration-700"
+                  >
                     {project.line}
-                  </p>
+                  </motion.p>
                 </div>
                 
                 {project.type === 'pdf' && (
@@ -136,6 +161,9 @@ export default function WorkPreview() {
                     PDF
                   </div>
                 )}
+
+                {/* Decorative corner accent */}
+                <div className="absolute bottom-3 right-3 w-6 h-6 border-r border-b border-[#f5b915]/0 group-hover:border-[#f5b915]/40 transition-colors duration-500" />
               </div>
               
                 <div className="space-y-1 px-1 transition-all duration-500 group-hover:-translate-y-2">
@@ -150,14 +178,17 @@ export default function WorkPreview() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
           className="flex justify-center"
         >
           <a 
             href="/work" 
-            className="inline-flex items-center gap-3 px-10 py-5 bg-[#f5b915] text-[#004643] font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all duration-500 shadow-[0_0_40px_rgba(245,185,21,0.2)] hover:shadow-[0_0_60px_rgba(245,185,21,0.4)] group relative overflow-hidden"
+            className="group inline-flex items-center gap-3 px-10 py-5 bg-[#f5b915] text-[#004643] font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all duration-500 shadow-[0_0_40px_rgba(245,185,21,0.2)] hover:shadow-[0_0_60px_rgba(245,185,21,0.4)] relative overflow-hidden"
           >
+            {/* Shine sweep */}
+            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
             <span className="relative z-10">View Full Archive</span>
-            <svg className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 relative z-10 group-hover:translate-x-1.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </a>

@@ -115,11 +115,19 @@ export default function WorkPage() {
       <div className="background-glow" />
       <Navigation activeSection="work" />
 
+      {/* ─── Floating accent orbs ─── */}
+      <motion.div
+        className="fixed top-[15%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none z-0"
+        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.04) 0%, transparent 70%)", filter: "blur(80px)" }}
+        animate={{ y: [0, -40, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       {/* Header */}
-      <section className="pt-44 pb-12 px-6 lg:px-10 max-w-7xl mx-auto">
+      <section className="pt-44 pb-12 px-6 lg:px-10 max-w-7xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.8 }}
           className="max-w-3xl mb-16"
         >
@@ -128,24 +136,41 @@ export default function WorkPage() {
               Portfolio
             </BoundingBox>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold font-display mb-8 tracking-tight">Selected Works</h1>
-          <p className="text-xl md:text-2xl text-[#f0ede5]/60 font-light leading-relaxed">
+          <div className="overflow-hidden">
+            <motion.h1
+              className="text-5xl md:text-7xl font-bold font-display mb-8 tracking-tight"
+              initial={{ y: "100%" }}
+              animate={{ y: "0%" }}
+              transition={{ delay: 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Selected Works
+            </motion.h1>
+          </div>
+          <motion.p
+            className="text-xl md:text-2xl text-[#f0ede5]/60 font-light leading-relaxed"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.6 }}
+          >
             A collection of design work across branding, print, posters, and web development. Click any project to view details or open full files.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Filter UI */}
         <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
           className="flex flex-wrap gap-x-10 gap-y-6 border-t border-[#f0ede5]/10 pt-8"
         >
-          {filters.map(filter => (
-            <button 
+          {filters.map((filter, i) => (
+            <motion.button 
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`text-xs font-bold uppercase tracking-[0.2em] transition-all relative py-2
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55 + i * 0.05, duration: 0.4 }}
+              className={`text-xs font-bold uppercase tracking-[0.2em] transition-all relative py-2 hover:scale-105
                 ${activeFilter === filter ? 'text-[#f5b915]' : 'text-[#f0ede5]/30 hover:text-[#f0ede5]'}`}
             >
               {filter}
@@ -156,13 +181,13 @@ export default function WorkPage() {
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
       </section>
 
       {/* Masonry Grid */}
-      <section className="pb-32 px-6 lg:px-10 max-w-7xl mx-auto min-h-[600px]">
+      <section className="pb-32 px-6 lg:px-10 max-w-7xl mx-auto min-h-[600px] relative z-10">
         <motion.div 
           layout
           className="columns-1 md:columns-2 lg:columns-3 gap-x-8"
@@ -172,14 +197,14 @@ export default function WorkPage() {
               <motion.div
                 key={project.title}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                className="break-inside-avoid group cursor-pointer relative transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-3xl mb-12 lg:mb-16"
+                initial={{ opacity: 0, scale: 0.92, filter: "blur(6px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 0.92, filter: "blur(6px)" }}
+                transition={{ duration: 0.5 }}
+                className="break-inside-avoid group cursor-pointer relative transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)] rounded-3xl mb-12 lg:mb-16"
                 onClick={() => setSelectedProject(project)}
               >
-                <div className={`relative w-full ${project.aspect} overflow-hidden mb-6 rounded-3xl ${project.bgColor || 'bg-white/5'} border border-white/10`}>
+                <div className={`relative w-full ${project.aspect} overflow-hidden mb-6 rounded-3xl ${project.bgColor || 'bg-white/5'} border border-white/10 group-hover:border-[#f5b915]/20 transition-colors duration-500`}>
                   <Image 
                     src={project.image}
                     alt={project.title}
@@ -199,6 +224,9 @@ export default function WorkPage() {
                       PDF
                     </div>
                   )}
+
+                  {/* Decorative corner accent */}
+                  <div className="absolute bottom-3 right-3 w-6 h-6 border-r border-b border-[#f5b915]/0 group-hover:border-[#f5b915]/40 transition-colors duration-500" />
                 </div>
                 
                 <div className="space-y-1 px-1 transition-all duration-500 group-hover:-translate-y-2">

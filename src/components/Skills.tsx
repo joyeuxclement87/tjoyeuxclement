@@ -61,24 +61,29 @@ export default function Skills() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <section ref={containerRef} id="skills" className="py-24 relative overflow-hidden">
-      {/* Parallax Background Elements */}
+    <section ref={containerRef} id="skills" className="py-28 relative overflow-hidden">
+      {/* ─── Floating accent orbs ─── */}
       <motion.div 
-        style={{ y: y1 }}
-        className="absolute top-10 right-[-5%] w-64 h-64 bg-[#f5b915]/5 rounded-full blur-3xl -z-10" 
+        style={{ y: y1, background: "radial-gradient(circle, rgba(245,185,21,0.07) 0%, transparent 70%)", filter: "blur(80px)" }}
+        className="absolute top-10 right-[-5%] w-[400px] h-[400px] rounded-full -z-10 pointer-events-none"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        style={{ y: y2 }}
-        className="absolute bottom-10 left-[-5%] w-96 h-96 bg-[#004643]/20 rounded-full blur-3xl -z-10" 
+        style={{ y: y2, background: "radial-gradient(circle, rgba(0,70,67,0.2) 0%, transparent 70%)", filter: "blur(100px)" }}
+        className="absolute bottom-10 left-[-5%] w-[500px] h-[500px] rounded-full -z-10 pointer-events-none"
+        animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
 
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
           className="mb-16"
         >
           <div className="flex items-center mb-4">
@@ -86,43 +91,78 @@ export default function Skills() {
               Skills
             </BoundingBox>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold font-display text-[#f0ede5]">
-            Arsenal & Tools
-          </h2>
+          <div className="overflow-hidden">
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold font-display text-[#f0ede5]"
+              initial={{ y: "100%" }}
+              whileInView={{ y: "0%" }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Arsenal & Tools
+            </motion.h2>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skills.map((category, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:bg-white/[0.07] transition-all duration-500"
+              transition={{ delay: 0.1 + idx * 0.15, duration: 0.7 }}
+              className="group bg-white/5 border border-white/10 rounded-3xl p-8 hover:bg-white/[0.07] hover:border-[#f5b915]/20 transition-all duration-500 relative overflow-hidden"
             >
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 rounded-2xl bg-[#f5b915]/10 flex items-center justify-center text-[#f5b915]">
+              {/* Hover glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#f5b915]/0 via-transparent to-[#f5b915]/0 group-hover:from-[#f5b915]/5 group-hover:to-[#f5b915]/0 transition-all duration-700 pointer-events-none" />
+
+              <div className="flex items-center gap-4 mb-8 relative z-10">
+                <motion.div
+                  className="w-12 h-12 rounded-2xl bg-[#f5b915]/10 flex items-center justify-center text-[#f5b915] group-hover:bg-[#f5b915]/20 group-hover:scale-110 transition-all duration-500"
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
                   <category.icon size={24} weight="duotone" />
-                </div>
+                </motion.div>
                 <h3 className="text-xl font-bold font-display text-[#f0ede5]">{category.category}</h3>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 relative z-10">
                 {category.items.map((item, i) => (
                   <div key={i} className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-[#f0ede5]/85">{item.name}</span>
-                      <span className="text-[#f5b915] font-mono">{item.level}%</span>
+                      <motion.span
+                        className="text-[#f5b915] font-mono"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.8 + (i * 0.1) }}
+                      >
+                        {item.level}%
+                      </motion.span>
                     </div>
                     <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
                         whileInView={{ width: `${item.level}%` }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.5 + (i * 0.1) }}
-                        className="h-full bg-[#f5b915]"
-                      />
+                        transition={{ duration: 1.2, delay: 0.5 + (i * 0.12), ease: [0.22, 1, 0.36, 1] }}
+                        className="h-full rounded-full relative overflow-hidden"
+                        style={{
+                          background: "linear-gradient(90deg, #f5b915, #f5b915ee)",
+                        }}
+                      >
+                        {/* Shine sweep on skill bar */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                          initial={{ x: "-100%" }}
+                          whileInView={{ x: "200%" }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 1.2 + (i * 0.12), ease: "easeOut" }}
+                        />
+                      </motion.div>
                     </div>
                   </div>
                 ))}

@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { useForm, ValidationError } from "@formspree/react";
-import { ArrowLeftIcon, PaperAirplaneIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { PaperAirplaneIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 import BoundingBox from '@/components/BoundingBox';
 import Navigation from '@/components/Navigation';
 
@@ -16,25 +16,36 @@ export default function ContactPage() {
         <Navigation activeSection="contact" />
         
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           className="space-y-8 max-w-2xl"
         >
-          <div className="w-20 h-20 bg-[#f5b915]/10 rounded-full flex items-center justify-center mx-auto text-[#f5b915]">
+          <motion.div
+            className="w-20 h-20 bg-[#f5b915]/10 rounded-full flex items-center justify-center mx-auto text-[#f5b915]"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          >
             <CheckCircleIcon className="w-12 h-12" />
-          </div>
+          </motion.div>
           <h1 className="text-5xl md:text-7xl font-bold font-display">Message Sent!</h1>
           <p className="text-xl md:text-2xl text-[#f0ede5]/60 font-light leading-relaxed">
-            Thank you for reaching out. I've received your message and will get back to you as soon as possible.
+            Thank you for reaching out. I&apos;ve received your message and will get back to you as soon as possible.
           </p>
-          <div className="pt-8">
+          <motion.div
+            className="pt-8"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
             <button 
               onClick={() => window.location.reload()}
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[#f5b915] text-[#004643] font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all duration-500"
+              className="group inline-flex items-center gap-3 px-10 py-5 bg-[#f5b915] text-[#004643] font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all duration-500 relative overflow-hidden"
             >
-              Send Another Message
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+              <span className="relative z-10">Send Another Message</span>
             </button>
-          </div>
+          </motion.div>
         </motion.div>
       </main>
     );
@@ -45,11 +56,25 @@ export default function ContactPage() {
       <div className="background-glow" />
       <Navigation activeSection="contact" />
 
+      {/* ─── Floating accent orbs ─── */}
+      <motion.div
+        className="fixed top-[20%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none z-0"
+        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.04) 0%, transparent 70%)", filter: "blur(80px)" }}
+        animate={{ y: [0, -35, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="fixed bottom-[10%] left-[-5%] w-[350px] h-[350px] rounded-full pointer-events-none z-0"
+        style={{ background: "radial-gradient(circle, rgba(0,70,67,0.12) 0%, transparent 70%)", filter: "blur(100px)" }}
+        animate={{ y: [0, 25, 0], scale: [1, 1.08, 1] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+      />
+
       {/* Header */}
-      <section className="pt-44 pb-12 px-6 lg:px-10 max-w-3xl mx-auto text-center">
+      <section className="pt-44 pb-12 px-6 lg:px-10 max-w-3xl mx-auto text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
@@ -58,27 +83,41 @@ export default function ContactPage() {
               Get In Touch
             </BoundingBox>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold font-display mb-8">Say Hello.</h1>
-          <p className="text-xl md:text-2xl text-[#f0ede5]/80 font-light leading-relaxed">
-            I'm currently available for freelance work and exciting collaborations. Let's build something great together.
-          </p>
+          <div className="overflow-hidden">
+            <motion.h1
+              className="text-5xl md:text-7xl font-bold font-display mb-8"
+              initial={{ y: "100%" }}
+              animate={{ y: "0%" }}
+              transition={{ delay: 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Say Hello.
+            </motion.h1>
+          </div>
+          <motion.p
+            className="text-xl md:text-2xl text-[#f0ede5]/80 font-light leading-relaxed"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.6 }}
+          >
+            I&apos;m currently available for freelance work and exciting collaborations. Let&apos;s build something great together.
+          </motion.p>
         </motion.div>
       </section>
 
       {/* Main Content */}
-      <section className="pb-32 px-6 lg:px-10 max-w-6xl mx-auto">
+      <section className="pb-32 px-6 lg:px-10 max-w-6xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-24">
           
           {/* Direct Contacts Info */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            initial={{ opacity: 0, x: -20, filter: "blur(8px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.3, duration: 0.7 }}
             className="lg:col-span-1 space-y-12 lg:pt-8"
           >
-            <div className="space-y-3">
+            <div className="space-y-3 group">
               <p className="text-[#f0ede5]/50 text-[10px] uppercase tracking-[0.3em] font-bold">Email</p>
-              <a href="mailto:joyeuxclement87@gmail.com" className="block text-xl md:text-2xl text-[#f0ede5] hover:text-[#f5b915] transition-colors font-display tracking-tight">
+              <a href="mailto:joyeuxclement87@gmail.com" className="block text-xl md:text-2xl text-[#f0ede5] hover:text-[#f5b915] transition-all duration-300 font-display tracking-tight group-hover:translate-x-1">
                 joyeuxclement87@gmail.com
               </a>
             </div>
@@ -86,23 +125,46 @@ export default function ContactPage() {
             <div className="space-y-3">
               <p className="text-[#f0ede5]/50 text-[10px] uppercase tracking-[0.3em] font-bold">Socials</p>
               <div className="space-y-3">
-                <a href="https://instagram.com/joyeuxclement87" target="_blank" rel="noopener noreferrer" className="block text-lg text-[#f0ede5]/80 hover:text-[#f5b915] transition-colors uppercase tracking-widest font-bold text-xs">Instagram</a>
-                <a href="https://www.linkedin.com/in/tuyishimire-joyeux-clement-32418528a/" target="_blank" rel="noopener noreferrer" className="block text-lg text-[#f0ede5]/80 hover:text-[#f5b915] transition-colors uppercase tracking-widest font-bold text-xs">LinkedIn</a>
-                <a href="https://behance.net/joyeuxclement" target="_blank" rel="noopener noreferrer" className="block text-lg text-[#f0ede5]/80 hover:text-[#f5b915] transition-colors uppercase tracking-widest font-bold text-xs">Behance</a>
+                {[
+                  { name: "Instagram", url: "https://instagram.com/joyeuxclement87" },
+                  { name: "LinkedIn", url: "https://www.linkedin.com/in/tuyishimire-joyeux-clement-32418528a/" },
+                  { name: "Behance", url: "https://behance.net/joyeuxclement" },
+                ].map((social, i) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-xs text-[#f0ede5]/80 hover:text-[#f5b915] transition-all duration-300 uppercase tracking-widest font-bold hover:translate-x-1"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 + i * 0.08, duration: 0.4 }}
+                  >
+                    {social.name}
+                  </motion.a>
+                ))}
               </div>
             </div>
           </motion.div>
 
           {/* Form */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="lg:col-span-2 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12"
+            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.35, duration: 0.7 }}
+            className="lg:col-span-2 bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 hover:border-white/15 transition-colors duration-500 relative overflow-hidden group/form"
           >
-            <form className="space-y-8" onSubmit={handleSubmit}>
+            {/* Subtle hover glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#f5b915]/0 to-[#f5b915]/0 group-hover/form:from-[#f5b915]/[0.02] group-hover/form:to-transparent transition-all duration-700 pointer-events-none" />
+
+            <form className="space-y-8 relative z-10" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-3">
+                <motion.div
+                  className="space-y-3"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.45 }}
+                >
                   <label htmlFor="name" className="text-[#f0ede5]/50 text-[10px] uppercase tracking-[0.3em] font-bold ml-4">Name</label>
                   <input 
                     id="name"
@@ -110,10 +172,15 @@ export default function ContactPage() {
                     type="text" 
                     required
                     placeholder="John Doe"
-                    className="w-full bg-[#004643]/50 border border-white/10 rounded-full px-6 py-4 text-[#f0ede5] placeholder:text-[#f0ede5]/20 focus:outline-none focus:border-[#f5b915]/50 transition-all"
+                    className="w-full bg-[#004643]/50 border border-white/10 rounded-full px-6 py-4 text-[#f0ede5] placeholder:text-[#f0ede5]/20 focus:outline-none focus:border-[#f5b915]/50 focus:shadow-[0_0_20px_rgba(245,185,21,0.1)] transition-all duration-300"
                   />
-                </div>
-                <div className="space-y-3">
+                </motion.div>
+                <motion.div
+                  className="space-y-3"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
                   <label htmlFor="email" className="text-[#f0ede5]/50 text-[10px] uppercase tracking-[0.3em] font-bold ml-4">Email</label>
                   <input 
                     id="email"
@@ -121,13 +188,18 @@ export default function ContactPage() {
                     type="email" 
                     required
                     placeholder="john@example.com"
-                    className="w-full bg-[#004643]/50 border border-white/10 rounded-full px-6 py-4 text-[#f0ede5] placeholder:text-[#f0ede5]/20 focus:outline-none focus:border-[#f5b915]/50 transition-all"
+                    className="w-full bg-[#004643]/50 border border-white/10 rounded-full px-6 py-4 text-[#f0ede5] placeholder:text-[#f0ede5]/20 focus:outline-none focus:border-[#f5b915]/50 focus:shadow-[0_0_20px_rgba(245,185,21,0.1)] transition-all duration-300"
                   />
                   <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-xs mt-1 ml-4" />
-                </div>
+                </motion.div>
               </div>
               
-              <div className="space-y-3">
+              <motion.div
+                className="space-y-3"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55 }}
+              >
                 <label htmlFor="message" className="text-[#f0ede5]/50 text-[10px] uppercase tracking-[0.3em] font-bold ml-4">Message</label>
                 <textarea 
                   id="message"
@@ -135,10 +207,10 @@ export default function ContactPage() {
                   required
                   rows={6}
                   placeholder="Tell me about your project..."
-                  className="w-full bg-[#004643]/50 border border-white/10 rounded-3xl px-6 py-4 text-[#f0ede5] placeholder:text-[#f0ede5]/20 focus:outline-none focus:border-[#f5b915]/50 transition-all resize-none"
+                  className="w-full bg-[#004643]/50 border border-white/10 rounded-3xl px-6 py-4 text-[#f0ede5] placeholder:text-[#f0ede5]/20 focus:outline-none focus:border-[#f5b915]/50 focus:shadow-[0_0_20px_rgba(245,185,21,0.1)] transition-all duration-300 resize-none"
                 ></textarea>
                 <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-xs mt-1 ml-4" />
-              </div>
+              </motion.div>
 
               {state.errors && (state.errors as any).length > 0 && (
                 <div className="p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 text-xs text-center mb-6">
@@ -146,22 +218,28 @@ export default function ContactPage() {
                 </div>
               )}
 
-              <div className="pt-4 flex justify-end">
+              <motion.div
+                className="pt-4 flex justify-end"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
                 <button 
                   type="submit"
                   disabled={state.submitting}
-                  className="inline-flex items-center gap-3 px-10 py-5 bg-[#f5b915] text-[#004643] font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all duration-500 shadow-[0_0_40px_rgba(245,185,21,0.2)] hover:shadow-[0_0_60px_rgba(245,185,21,0.4)] group relative overflow-hidden disabled:opacity-50"
+                  className="group inline-flex items-center gap-3 px-10 py-5 bg-[#f5b915] text-[#004643] font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all duration-500 shadow-[0_0_40px_rgba(245,185,21,0.2)] hover:shadow-[0_0_60px_rgba(245,185,21,0.4)] relative overflow-hidden disabled:opacity-50"
                 >
+                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                   <span className="relative z-10">{state.submitting ? "Sending..." : "Send Message"}</span>
                   <PaperAirplaneIcon className="w-4 h-4 relative z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </button>
-              </div>
+              </motion.div>
             </form>
           </motion.div>
         </div>
       </section>
 
-      <footer className="border-t border-[#f0ede5]/10 py-8">
+      <footer className="border-t border-[#f0ede5]/10 py-8 relative z-10">
          <p className="text-[#f0ede5]/50 text-[10px] uppercase tracking-[0.3em] font-bold text-center">
             © {new Date().getFullYear()} T,joyeux clement. All Rights Reserved.
          </p>

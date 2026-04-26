@@ -3,6 +3,15 @@ import { useRef } from "react";
 import Image from "next/image";
 import BoundingBox from "./BoundingBox";
 
+/* ─── Stagger orchestrator ─── */
+const stagger = {
+  badge:   { delay: 0.1, duration: 0.7 },
+  heading: { delay: 0.25, duration: 0.8 },
+  image:   { delay: 0.15, duration: 1.0 },
+  text:    { delay: 0.35, duration: 0.7 },
+  stats:   { delay: 0.5,  duration: 0.6 },
+};
+
 export default function About() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -10,17 +19,34 @@ export default function About() {
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.5], [1.08, 1]);
 
   return (
-    <section ref={containerRef} id="about" className="py-24 relative overflow-hidden">
+    <section ref={containerRef} id="about" className="py-28 relative overflow-hidden">
+
+      {/* ─── Floating accent orbs ─── */}
+      <motion.div
+        className="absolute -top-20 right-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
+        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.06) 0%, transparent 70%)", filter: "blur(80px)" }}
+        animate={{ y: [0, -40, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-0 left-[-10%] w-[400px] h-[400px] rounded-full pointer-events-none -z-10"
+        style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(100px)" }}
+        animate={{ y: [0, 30, 0], scale: [1, 1.08, 1] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
+          transition={{ delay: stagger.badge.delay, duration: stagger.badge.duration }}
           className="mb-16"
         >
           <div className="flex items-center mb-4">
@@ -28,9 +54,17 @@ export default function About() {
               About Me
             </BoundingBox>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold font-display text-[#f0ede5]">
-            T. Joyeux Clement
-          </h2>
+          <div className="overflow-hidden">
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold font-display text-[#f0ede5]"
+              initial={{ y: "100%" }}
+              whileInView={{ y: "0%" }}
+              viewport={{ once: true }}
+              transition={{ delay: stagger.heading.delay, duration: stagger.heading.duration, ease: [0.22, 1, 0.36, 1] }}
+            >
+              T. Joyeux Clement
+            </motion.h2>
+          </div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -38,59 +72,116 @@ export default function About() {
           {/* Left Column - Image */}
           <motion.div
             style={{ y }}
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: stagger.image.duration, delay: stagger.image.delay }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] w-full max-w-md rounded-2xl overflow-hidden shadow-xl border border-white/5">
-              <Image
-                src="/about-image.jpg"
-                alt="T. Joyeux Clement"
-                fill
-                className="object-cover transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+            <div className="relative aspect-[4/5] w-full max-w-md rounded-2xl overflow-hidden shadow-xl border border-white/5 group">
+              <motion.div className="relative w-full h-full" style={{ scale: imgScale }}>
+                <Image
+                  src="/about-image.jpg"
+                  alt="T. Joyeux Clement"
+                  fill
+                  className="object-cover transition-all duration-700 group-hover:scale-105"
+                />
+              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+              
+              {/* Decorative corner accents */}
+              <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-[#f5b915]/30" />
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-[#f5b915]/30" />
             </div>
             
-            {/* Simple Decorative Element */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#f5b915]/10 rounded-full blur-3xl -z-10" />
+            {/* Decorative Element */}
+            <motion.div
+              className="absolute -bottom-6 -right-6 w-40 h-40 rounded-full -z-10"
+              style={{ background: "radial-gradient(circle, rgba(245,185,21,0.12) 0%, transparent 70%)", filter: "blur(30px)" }}
+              animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            {/* Decorative vertical line */}
+            <motion.div
+              className="absolute -right-8 top-8 bottom-8 w-px bg-gradient-to-b from-transparent via-[#f5b915]/20 to-transparent hidden lg:block"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
+              style={{ transformOrigin: "top" }}
+            />
           </motion.div>
 
           {/* Right Column - Content */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: stagger.text.duration, delay: stagger.text.delay }}
             className="space-y-8"
           >
             <div className="space-y-6">
-              <p className="text-xl md:text-2xl text-[#f5b915] font-light italic">
+              <motion.p
+                className="text-xl md:text-2xl text-[#f5b915] font-light italic"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: stagger.text.delay, duration: 0.6 }}
+              >
                 Crafting digital experiences with purpose.
-              </p>
-              <p className="text-lg text-[#f0ede5]/80 leading-relaxed font-light">
-                I’m a graphic designer and web developer focused on building modern visual identities and digital experiences. 
+              </motion.p>
+              <motion.p
+                className="text-lg text-[#f0ede5]/80 leading-relaxed font-light"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: stagger.text.delay + 0.1, duration: 0.6 }}
+              >
+                I&apos;m a graphic designer and web developer focused on building modern visual identities and digital experiences. 
                 I design across branding, print, posters, and web — creating work that is clean, structured, and easy to understand.
-              </p>
-              <p className="text-lg text-[#f0ede5]/80 leading-relaxed font-light">
+              </motion.p>
+              <motion.p
+                className="text-lg text-[#f0ede5]/80 leading-relaxed font-light"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: stagger.text.delay + 0.2, duration: 0.6 }}
+              >
                 My goal is simple: turn ideas into visuals that communicate clearly and look intentional. 
-                Whether it's a logo, a poster, or a complex website, I ensure every detail serves a purpose.
-              </p>
+                Whether it&apos;s a logo, a poster, or a complex website, I ensure every detail serves a purpose.
+              </motion.p>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-[#f0ede5]/10">
-              <div className="space-y-1">
-                <p className="text-3xl font-display font-bold text-[#f0ede5]">05<span className="text-[#f5b915]">+</span></p>
-                <p className="text-[#f0ede5]/60 text-[10px] uppercase tracking-widest font-bold">Years Experience</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-3xl font-display font-bold text-[#f0ede5]">50<span className="text-[#f5b915]">+</span></p>
-                <p className="text-[#f0ede5]/60 text-[10px] uppercase tracking-widest font-bold">Projects Done</p>
-              </div>
-            </div>
+            <motion.div
+              className="grid grid-cols-2 gap-8 pt-8 border-t border-[#f0ede5]/10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: stagger.stats.delay, duration: stagger.stats.duration }}
+            >
+              {[
+                { number: "05", suffix: "+", label: "Years Experience" },
+                { number: "50", suffix: "+", label: "Projects Done" },
+              ].map((stat, i) => (
+                <div key={i} className="space-y-1 group cursor-default">
+                  <div className="flex items-baseline gap-0.5">
+                    <motion.p
+                      className="text-3xl font-display font-bold text-[#f0ede5] group-hover:text-[#f5b915] transition-colors duration-500"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: stagger.stats.delay + (i * 0.15), duration: 0.5, ease: "easeOut" }}
+                    >
+                      {stat.number}
+                    </motion.p>
+                    <span className="text-[#f5b915] text-2xl font-bold">{stat.suffix}</span>
+                  </div>
+                  <p className="text-[#f0ede5]/60 text-[10px] uppercase tracking-widest font-bold">{stat.label}</p>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
 
         </div>
