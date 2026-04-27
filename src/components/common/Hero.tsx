@@ -66,11 +66,7 @@ export default function Hero() {
         style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(120px)" }}
       />
 
-      {/* ─── Soft radial glow behind text ─── */}
-      <div
-        className="absolute top-[20%] left-[-10%] w-[800px] h-[800px] rounded-full pointer-events-none z-0"
-        style={{ y: y2, background: "radial-gradient(circle, #f0ede5 0%, transparent 60%)" }}
-      />
+
 
       {/* ═══════════════════════════════════════════════════
           DESKTOP IMAGE — cinematic reveal with ken-burns
