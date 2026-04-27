@@ -11,36 +11,55 @@ export default function Approach() {
   ];
 
   return (
-    <section id="approach" className="py-32 relative overflow-hidden">
+    <section id="approach" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
 
       {/* ─── Floating accent orbs ─── */}
       <motion.div
-        className="absolute top-[20%] left-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(80px)" }}
+        className="absolute top-[20%] left-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
+        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(100px)" }}
         animate={{ y: [0, -30, 0], scale: [1, 1.1, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-[10%] right-[-5%] w-[350px] h-[350px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(100px)" }}
+        className="absolute bottom-[10%] right-[-5%] w-[450px] h-[450px] rounded-full pointer-events-none -z-10"
+        style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(120px)" }}
         animate={{ y: [0, 25, 0], scale: [1, 1.08, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
+      {/* Dots pattern overlay (Different from grid) */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+        backgroundImage: "radial-gradient(#f0ede5 1.5px, transparent 1.5px)",
+        backgroundSize: "24px 24px"
+      }} />
 
       <div className="max-w-5xl mx-auto px-4 lg:px-8 text-center">
         
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-20 md:mb-32 flex flex-col items-center gap-6"
+          className="mb-20 md:mb-32 flex flex-col items-center gap-6 relative z-10"
         >
-          <div className="flex items-center">
-            <BoundingBox className="text-[#f5b915] px-5 py-2 text-sm font-bold tracking-widest uppercase">
-              My Approach
-            </BoundingBox>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <span className="h-px w-10 bg-[#f5b915]/40" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#f5b915]/70 font-bold">My Approach</span>
+            <span className="h-px w-10 bg-[#f5b915]/40" />
+          </div>
+          <div className="overflow-hidden">
+            <motion.h2
+              className="text-5xl sm:text-6xl md:text-8xl font-bold font-display text-[#f0ede5] tracking-tighter leading-[0.95]"
+              initial={{ y: "100%" }}
+              whileInView={{ y: "0%" }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              The{" "}
+              <span className="text-[#f5b915]">
+                Process.
+              </span>
+            </motion.h2>
           </div>
           <motion.p
             className="text-xl md:text-2xl text-[#f0ede5]/80 font-light max-w-2xl mx-auto"

@@ -23,46 +23,54 @@ export default function About() {
   const imgScale = useTransform(scrollYProgress, [0, 0.5], [1.08, 1]);
 
   return (
-    <section ref={containerRef} id="about" className="py-28 relative overflow-hidden">
+    <section ref={containerRef} id="about" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001a18 0%, #000e0d 50%, #001209 100%)" }}>
 
       {/* ─── Floating accent orbs ─── */}
       <motion.div
-        className="absolute -top-20 right-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.06) 0%, transparent 70%)", filter: "blur(80px)" }}
+        className="absolute -top-20 right-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none -z-10"
+        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.06) 0%, transparent 70%)", filter: "blur(100px)" }}
         animate={{ y: [0, -40, 0], scale: [1, 1.1, 1] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-0 left-[-10%] w-[400px] h-[400px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(100px)" }}
+        className="absolute bottom-0 left-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
+        style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(120px)" }}
         animate={{ y: [0, 30, 0], scale: [1, 1.08, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
+        backgroundImage: "linear-gradient(#f0ede5 1px, transparent 1px), linear-gradient(90deg, #f0ede5 1px, transparent 1px)",
+        backgroundSize: "80px 80px"
+      }} />
 
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: stagger.badge.delay, duration: stagger.badge.duration }}
-          className="mb-16"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-20 relative z-10"
         >
-          <div className="flex items-center mb-4">
-            <BoundingBox className="text-[#f5b915] px-4 py-1 text-xs font-bold tracking-widest uppercase">
-              About Me
-            </BoundingBox>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span className="h-px w-10 bg-[#f5b915]/40" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#f5b915]/70 font-bold">About Me</span>
+            <span className="h-px w-10 bg-[#f5b915]/40" />
           </div>
           <div className="overflow-hidden">
             <motion.h2
-              className="text-4xl md:text-5xl font-bold font-display text-[#f0ede5]"
+              className="text-5xl sm:text-6xl md:text-8xl font-bold font-display text-[#f0ede5] tracking-tighter leading-[0.95]"
               initial={{ y: "100%" }}
               whileInView={{ y: "0%" }}
               viewport={{ once: true }}
-              transition={{ delay: stagger.heading.delay, duration: stagger.heading.duration, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              T. Joyeux Clement
+              T. Joyeux{" "}
+              <span className="text-[#f5b915]">
+                Clement.
+              </span>
             </motion.h2>
           </div>
         </motion.div>

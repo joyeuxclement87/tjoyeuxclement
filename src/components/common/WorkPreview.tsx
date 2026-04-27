@@ -80,39 +80,47 @@ export default function WorkPreview() {
   const activeProjects = sanityProjects.length > 0 ? sanityProjects : localProjects;
 
   return (
-    <section ref={containerRef} id="work" className="py-32 relative overflow-hidden">
+    <section ref={containerRef} id="work" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001a18 0%, #000e0d 50%, #001209 100%)" }}>
       {/* ─── Floating accent orb ─── */}
       <motion.div
-        className="absolute top-[20%] left-[-5%] w-[450px] h-[450px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(90px)" }}
+        className="absolute top-[20%] left-[-5%] w-[550px] h-[550px] rounded-full pointer-events-none -z-10"
+        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(110px)" }}
         animate={{ y: [0, -35, 0], scale: [1, 1.1, 1] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
+      {/* Dots pattern overlay (Different from grid) */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+        backgroundImage: "radial-gradient(#f0ede5 1.5px, transparent 1.5px)",
+        backgroundSize: "24px 24px"
+      }} />
 
       <div className="max-w-6xl mx-auto px-4 lg:px-8">
         
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-20 md:mb-28 flex flex-col items-center text-center"
+          className="mb-20 md:mb-28 flex flex-col items-center text-center relative z-10"
         >
-          <div className="flex items-center mb-6">
-            <BoundingBox className="text-[#f5b915] px-4 py-1 text-sm font-bold tracking-widest uppercase">
-              Featured Work
-            </BoundingBox>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span className="h-px w-10 bg-[#f5b915]/40" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#f5b915]/70 font-bold">Featured Work</span>
+            <span className="h-px w-10 bg-[#f5b915]/40" />
           </div>
           <div className="overflow-hidden">
             <motion.h3
-              className="text-5xl md:text-6xl font-bold font-display text-[#f0ede5] mb-6 tracking-tight"
+              className="text-5xl sm:text-6xl md:text-8xl font-bold font-display text-[#f0ede5] tracking-tighter leading-[0.95] mb-6"
               initial={{ y: "100%" }}
               whileInView={{ y: "0%" }}
               viewport={{ once: true }}
-              transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              Selected Work
+              Selected{" "}
+              <span className="text-[#f5b915]">
+                Work.
+              </span>
             </motion.h3>
           </div>
           <motion.p

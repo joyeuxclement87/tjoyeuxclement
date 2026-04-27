@@ -7,6 +7,7 @@ import BoundingBox from '@/components/ui/BoundingBox';
 import Footer from '@/layout/Footer';
 import Navigation from '@/layout/Navigation';
 import ProjectModal from '@/components/ui/ProjectModal';
+import FloatingActions from '@/components/ui/FloatingActions';
 import { client } from '@/sanity/lib/client';
 import { projectsQuery } from '@/sanity/lib/queries';
 
@@ -111,7 +112,7 @@ export default function WorkPage() {
   );
 
   return (
-    <main className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18]">
+    <main className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18]" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
       <div className="background-glow" />
       <Navigation activeSection="work" />
 
@@ -126,28 +127,31 @@ export default function WorkPage() {
       {/* Header */}
       <section className="pt-44 pb-12 px-6 lg:px-10 max-w-7xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-3xl mb-16"
+          className="text-center mb-16 max-w-3xl mx-auto"
         >
-          <div className="flex items-center mb-6">
-            <BoundingBox className="text-[#f5b915] px-4 py-1 text-sm font-bold tracking-widest uppercase">
-              Portfolio
-            </BoundingBox>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span className="h-px w-10 bg-[#f5b915]/40" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#f5b915]/70 font-bold">Portfolio</span>
+            <span className="h-px w-10 bg-[#f5b915]/40" />
           </div>
           <div className="overflow-hidden">
             <motion.h1
-              className="text-5xl md:text-7xl font-bold font-display mb-8 tracking-tight"
+              className="text-5xl sm:text-6xl md:text-8xl font-bold font-display tracking-tighter leading-[0.95] mb-8"
               initial={{ y: "100%" }}
               animate={{ y: "0%" }}
-              transition={{ delay: 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              Selected Works
+              Selected{" "}
+              <span className="text-[#f5b915]">
+                Works.
+              </span>
             </motion.h1>
           </div>
           <motion.p
-            className="text-xl md:text-2xl text-[#f0ede5]/60 font-light leading-relaxed"
+            className="text-xl md:text-2xl text-[#f0ede5]/60 font-light leading-relaxed mx-auto max-w-2xl"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.6 }}
@@ -161,7 +165,7 @@ export default function WorkPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex flex-wrap gap-x-10 gap-y-6 border-t border-[#f0ede5]/10 pt-8"
+          className="flex flex-wrap justify-center gap-x-10 gap-y-6 border-t border-[#f0ede5]/10 pt-8"
         >
           {filters.map((filter, i) => (
             <motion.button 
@@ -240,6 +244,8 @@ export default function WorkPage() {
       </section>
 
       <Footer />
+
+      <FloatingActions show={true} />
 
       <AnimatePresence>
         {selectedProject && (

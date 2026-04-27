@@ -5,13 +5,14 @@ import { useForm, ValidationError } from "@formspree/react";
 import { PaperAirplaneIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 import BoundingBox from '@/components/ui/BoundingBox';
 import Navigation from '@/layout/Navigation';
+import FloatingActions from '@/components/ui/FloatingActions';
 
 export default function ContactPage() {
   const [state, handleSubmit] = useForm("xpqkkaoa");
 
   if (state.succeeded) {
     return (
-      <main className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18] flex flex-col items-center justify-center text-center px-6">
+      <main className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18] flex flex-col items-center justify-center text-center px-6" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
         <div className="background-glow" />
         <Navigation activeSection="contact" />
         
@@ -52,7 +53,7 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18]">
+    <main className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18]" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
       <div className="background-glow" />
       <Navigation activeSection="contact" />
 
@@ -73,24 +74,27 @@ export default function ContactPage() {
       {/* Header */}
       <section className="pt-44 pb-12 px-6 lg:px-10 max-w-3xl mx-auto text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <div className="flex items-center justify-center mb-6">
-            <BoundingBox className="text-[#f5b915] px-4 py-1 text-sm font-bold tracking-widest uppercase">
-              Get In Touch
-            </BoundingBox>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span className="h-px w-10 bg-[#f5b915]/40" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#f5b915]/70 font-bold">Get In Touch</span>
+            <span className="h-px w-10 bg-[#f5b915]/40" />
           </div>
           <div className="overflow-hidden">
             <motion.h1
-              className="text-5xl md:text-7xl font-bold font-display mb-8"
+              className="text-5xl sm:text-6xl md:text-8xl font-bold font-display tracking-tighter leading-[0.95] mb-8"
               initial={{ y: "100%" }}
               animate={{ y: "0%" }}
-              transition={{ delay: 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              Say Hello.
+              Say{" "}
+              <span className="text-[#f5b915]">
+                Hello.
+              </span>
             </motion.h1>
           </div>
           <motion.p
@@ -238,6 +242,8 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </section>
+
+      <FloatingActions show={true} />
 
       <footer className="border-t border-[#f0ede5]/10 py-8 relative z-10">
          <p className="text-[#f0ede5]/50 text-[10px] uppercase tracking-[0.3em] font-bold text-center">

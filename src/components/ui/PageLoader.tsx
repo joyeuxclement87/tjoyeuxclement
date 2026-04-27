@@ -5,15 +5,22 @@ export default function PageLoader() {
     <motion.div 
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }}
-      className="fixed inset-0 z-[100] bg-[#004643] flex flex-col items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden"
+      style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}
     >
       {/* Background ambient glow */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1.2 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        className="absolute w-[400px] h-[400px] bg-[#f5b915]/10 rounded-full blur-[100px]"
+        className="absolute w-[500px] h-[500px] bg-[#f5b915]/5 rounded-full blur-[100px]"
       />
+      
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
+        backgroundImage: "linear-gradient(#f0ede5 1px, transparent 1px), linear-gradient(90deg, #f0ede5 1px, transparent 1px)",
+        backgroundSize: "80px 80px"
+      }} />
 
       <div className="relative flex flex-col items-center z-10">
         

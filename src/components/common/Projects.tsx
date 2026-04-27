@@ -27,41 +27,50 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 relative overflow-hidden">
+    <section id="services" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
       {/* ─── Floating accent orb ─── */}
       <motion.div
-        className="absolute top-[30%] right-[-8%] w-[400px] h-[400px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(80px)" }}
+        className="absolute top-[30%] right-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
+        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(100px)" }}
         animate={{ y: [0, -30, 0], scale: [1, 1.1, 1] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
+        backgroundImage: "linear-gradient(#f0ede5 1px, transparent 1px), linear-gradient(90deg, #f0ede5 1px, transparent 1px)",
+        backgroundSize: "80px 80px"
+      }} />
 
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center space-y-4 mb-16"
+          className="text-center mb-20"
         >
-          <div className="flex items-center justify-center mb-6">
-            <BoundingBox className="text-[#f5b915] px-4 py-1 text-sm font-bold tracking-widest uppercase">
-              Services
-            </BoundingBox>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <span className="h-px w-10 bg-[#f5b915]/40" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#f5b915]/70 font-bold">Services</span>
+            <span className="h-px w-10 bg-[#f5b915]/40" />
           </div>
           <div className="overflow-hidden">
             <motion.h3
-              className="text-5xl md:text-6xl font-bold font-display text-[#f0ede5] tracking-tight"
+              className="text-5xl sm:text-6xl md:text-8xl font-bold font-display text-[#f0ede5] tracking-tighter leading-[0.95]"
               initial={{ y: "100%" }}
               whileInView={{ y: "0%" }}
               viewport={{ once: true }}
-              transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              What I Do
+              What I{" "}
+              <span className="text-[#f5b915]">
+                can
+              </span>
+              <span className="text-[#f5b915]"> Do.</span>
             </motion.h3>
           </div>
           <motion.p
-            className="text-[#f0ede5]/80 max-w-3xl mx-auto text-xl md:text-2xl font-light pt-4"
+            className="text-[#f0ede5]/50 text-lg font-light max-w-lg mx-auto mt-6 leading-relaxed"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -102,8 +111,8 @@ export default function Services() {
                 <h3 className="text-3xl md:text-4xl font-display font-bold text-white tracking-tight group-hover:text-[#f5b915] transition-colors duration-500">{cat.title}</h3>
                 <p className="text-[#f0ede5]/80 leading-relaxed font-light text-lg max-w-3xl">{cat.desc}</p>
               </div>
-              <div className="p-5 bg-[#004643] rounded-full border border-white/10 group-hover:bg-[#f5b915] group-hover:border-[#f5b915] group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 self-start md:self-auto hidden md:block">
-                <cat.icon className="w-8 h-8 text-[#f5b915] group-hover:text-[#004643] transition-colors duration-500" />
+              <div className="p-5 bg-white/5 rounded-full border border-white/10 group-hover:bg-[#f5b915] group-hover:border-[#f5b915] group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 self-start md:self-auto hidden md:block">
+                <cat.icon className="w-8 h-8 text-[#f5b915] group-hover:text-[#001a18] transition-colors duration-500" />
               </div>
             </motion.div>
           ))}
