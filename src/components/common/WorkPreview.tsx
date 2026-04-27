@@ -146,13 +146,19 @@ export default function WorkPreview() {
               onClick={() => setSelectedProject(project)}
             >
               <div className={`relative w-full ${project.aspect} overflow-hidden mb-6 rounded-3xl ${project.bgColor || 'bg-white/5'} border border-white/10 group-hover:border-[#f5b915]/20 transition-colors duration-500`}>
-                <Image 
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-all duration-700 group-hover:scale-[1.06]"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
+                {typeof project.image === 'string' && project.image.trim() !== '' ? (
+                  <Image 
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-all duration-700 group-hover:scale-[1.06]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-[#004643]/20 flex items-center justify-center">
+                    <span className="text-[#f0ede5]/20 font-display font-bold">Image Pending</span>
+                  </div>
+                )}
                 {/* Soft fade overlay */}
                 <div className="absolute inset-0 bg-[#004643]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8 text-left">
                   <motion.p
