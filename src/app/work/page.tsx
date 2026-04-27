@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
-import BoundingBox from '@/components/ui/BoundingBox';
 import Footer from '@/layout/Footer';
 import Navigation from '@/layout/Navigation';
 import ProjectModal from '@/components/ui/ProjectModal';
 import FloatingActions from '@/components/ui/FloatingActions';
 import { client } from '@/sanity/lib/client';
 import { projectsQuery } from '@/sanity/lib/queries';
+import { Project } from '@/types';
 
 const projects = [
   {
@@ -88,8 +88,8 @@ const filters = ['All', 'Branding', 'Posters', 'Print (PDF)', 'Web Projects', 'L
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState('All');
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [sanityProjects, setSanityProjects] = useState<any[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [sanityProjects, setSanityProjects] = useState<Project[]>([]);
 
   useEffect(() => {
     const fetchProjects = async () => {

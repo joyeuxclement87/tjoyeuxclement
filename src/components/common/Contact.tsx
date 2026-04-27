@@ -213,7 +213,7 @@ export default function Contact() {
                 <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-xs mt-1" />
               </div>
 
-              {state.errors && (state.errors as any).length > 0 && (
+              {state.errors && (
                 <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs text-center">
                   Something went wrong. Please try again.
                 </div>

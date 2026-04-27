@@ -36,7 +36,6 @@ export default function Hero() {
   });
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const imgX = useTransform(scrollYProgress, [0, 1], [0, -40]);

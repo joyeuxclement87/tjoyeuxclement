@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
-import BoundingBox from "@/components/ui/BoundingBox";
 
 /* ─── Stagger orchestrator ─── */
 const stagger = {

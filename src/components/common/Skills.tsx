@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Code, PaintBrush, Monitor, Icon } from "@phosphor-icons/react";
-import BoundingBox from "@/components/ui/BoundingBox";
 
 interface SkillItem {
   name: string;
@@ -63,11 +62,11 @@ export default function Skills() {
   return (
     <section ref={containerRef} id="skills" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
       {/* ─── Floating accent orbs ─── */}
-      <div 
+      <motion.div 
         style={{ y: y1, background: "radial-gradient(circle, rgba(245,185,21,0.07) 0%, transparent 70%)", filter: "blur(100px)" }}
         className="absolute top-10 right-[-5%] w-[500px] h-[500px] rounded-full -z-10 pointer-events-none"
       />
-      <div 
+      <motion.div 
         style={{ y: y2, background: "radial-gradient(circle, rgba(0,70,67,0.2) 0%, transparent 70%)", filter: "blur(120px)" }}
         className="absolute bottom-10 left-[-5%] w-[600px] h-[600px] rounded-full -z-10 pointer-events-none"
       />

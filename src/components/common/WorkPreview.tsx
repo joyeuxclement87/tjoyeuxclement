@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
-import BoundingBox from "@/components/ui/BoundingBox";
 import ProjectModal from "@/components/ui/ProjectModal";
+import { Project } from "@/types";
 import { client } from '@/sanity/lib/client';
 import { projectsQuery } from '@/sanity/lib/queries';
 
@@ -50,8 +50,8 @@ const localProjects = [
 ];
 
 export default function WorkPreview() {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [sanityProjects, setSanityProjects] = useState<any[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [sanityProjects, setSanityProjects] = useState<Project[]>([]);
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -67,7 +67,7 @@ export default function WorkPreview() {
       try {
         const data = await client.fetch(projectsQuery);
         if (data && data.length > 0) {
-          const featured = data.filter((p: any) => p.featured);
+          const featured = data.filter((p: Project) => p.featured);
           setSanityProjects(featured.length >= 4 ? featured.slice(0, 4) : data.slice(0, 4));
         }
       } catch (err) {

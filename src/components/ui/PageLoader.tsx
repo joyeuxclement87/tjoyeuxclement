@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import Image from "next/image";
 
 export default function PageLoader() {
   return (
@@ -31,7 +32,7 @@ export default function PageLoader() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="relative w-48 md:w-64 flex items-center justify-center mb-8"
         >
-          <img src="/logo.png" alt="T. Joyeux Clement" className="w-full h-auto object-contain drop-shadow-2xl" />
+          <Image src="/logo.png" alt="T. Joyeux Clement" width={256} height={64} className="w-full h-auto object-contain drop-shadow-2xl" />
         </motion.div>
         
         {/* Simple elegant pulsing dots instead of numbers */}

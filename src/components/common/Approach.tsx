@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import BoundingBox from "@/components/ui/BoundingBox";
 import { LightBulbIcon, PencilIcon, SparklesIcon, CheckBadgeIcon } from "@heroicons/react/24/outline";
 
 export default function Approach() {

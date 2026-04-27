@@ -3,7 +3,9 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { XMarkIcon, ArrowDownTrayIcon, ArrowTopRightOnSquareIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 
-export default function ProjectModal({ project, onClose }: { project: any, onClose: () => void }) {
+import { Project } from "@/types";
+
+export default function ProjectModal({ project, onClose }: { project: Project, onClose: () => void }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = 'unset'; };

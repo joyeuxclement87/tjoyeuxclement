@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { useForm, ValidationError } from "@formspree/react";
 import { PaperAirplaneIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
-import BoundingBox from '@/components/ui/BoundingBox';
 import Navigation from '@/layout/Navigation';
 import FloatingActions from '@/components/ui/FloatingActions';
 
@@ -216,7 +215,7 @@ export default function ContactPage() {
                 <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-xs mt-1 ml-4" />
               </motion.div>
 
-              {state.errors && (state.errors as any).length > 0 && (
+              {state.errors && (
                 <div className="p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 text-xs text-center mb-6">
                   Something went wrong. Please check the form and try again.
                 </div>

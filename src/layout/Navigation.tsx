@@ -3,6 +3,7 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ArrowRightIcon, ChatBubbleOvalLeftEllipsisIcon } from "@heroicons/react/24/outline";
 
@@ -82,9 +83,11 @@ export default function Navigation({ activeSection }: { activeSection?: string }
               href="/#home"
               className="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:opacity-80"
             >
-              <img
+              <Image
                 src="/logo.png"
                 alt="T. Joyeux Clement"
+                width={120}
+                height={32}
                 className="h-7 md:h-8 w-auto object-contain"
               />
             </Link>
@@ -164,7 +167,7 @@ export default function Navigation({ activeSection }: { activeSection?: string }
               className="flex flex-col items-center gap-7"
               onClick={(e) => e.stopPropagation()}
             >
-              <img src="/logo.png" alt="logo" className="h-9 w-auto opacity-50 mb-6" />
+              <Image src="/logo.png" alt="logo" width={100} height={36} className="h-9 w-auto opacity-50 mb-6" />
 
               {navItems.map((item, i) => {
                 const active = isItemActive(item);
