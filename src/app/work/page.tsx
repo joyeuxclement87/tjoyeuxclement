@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
-import BoundingBox from '@/components/BoundingBox';
-import Footer from '@/components/Footer';
-import Navigation from '@/components/Navigation';
-import ProjectModal from '@/components/ProjectModal';
+import BoundingBox from '@/components/ui/BoundingBox';
+import Footer from '@/layout/Footer';
+import Navigation from '@/layout/Navigation';
+import ProjectModal from '@/components/ui/ProjectModal';
 import { client } from '@/sanity/lib/client';
 import { projectsQuery } from '@/sanity/lib/queries';
 

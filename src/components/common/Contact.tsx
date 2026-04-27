@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useForm, ValidationError } from "@formspree/react";
-import BoundingBox from "./BoundingBox";
+import BoundingBox from "@/components/ui/BoundingBox";
 
 export default function Contact() {
   const [state, handleSubmit] = useForm("xpqkkaoa"); // Placeholder ID - user should replace this

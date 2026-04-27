@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
-import BoundingBox from "./BoundingBox";
-import ProjectModal from "./ProjectModal";
+import BoundingBox from "@/components/ui/BoundingBox";
+import ProjectModal from "@/components/ui/ProjectModal";
 import { client } from '@/sanity/lib/client';
 import { projectsQuery } from '@/sanity/lib/queries';
 

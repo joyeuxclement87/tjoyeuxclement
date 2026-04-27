@@ -2,17 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import PageLoader from '@/components/PageLoader';
-import Header from '@/components/Header';
-import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
-import Services from '@/components/Projects';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
-import Approach from '@/components/Approach';
-import WorkPreview from '@/components/WorkPreview';
-import Footer from '@/components/Footer';
-import FloatingActions from '@/components/FloatingActions';
+import PageLoader from '@/components/ui/PageLoader';
+import Header from '@/layout/Header';
+import Navigation from '@/layout/Navigation';
+import Hero from '@/components/common/Hero';
+import Services from '@/components/common/Projects';
+import About from '@/components/common/About';
+import Skills from '@/components/common/Skills';
+import Approach from '@/components/common/Approach';
+import WorkPreview from '@/components/common/WorkPreview';
+import Footer from '@/layout/Footer';
+import FloatingActions from '@/components/ui/FloatingActions';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);

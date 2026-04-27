@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { PaintBrushIcon, DocumentTextIcon, ComputerDesktopIcon, ShareIcon } from '@heroicons/react/24/outline';
-import BoundingBox from "./BoundingBox";
+import BoundingBox from "@/components/ui/BoundingBox";
 
 export default function Services() {
   const services = [

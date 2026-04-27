@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Code, PaintBrush, Monitor, Icon } from "@phosphor-icons/react";
-import BoundingBox from "./BoundingBox";
+import BoundingBox from "@/components/ui/BoundingBox";
 
 interface SkillItem {
   name: string;

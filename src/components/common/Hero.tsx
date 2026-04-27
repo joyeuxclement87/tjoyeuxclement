@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
 import { ArrowRightIcon, ChatBubbleOvalLeftEllipsisIcon } from "@heroicons/react/24/outline";
-import BoundingBox from "./BoundingBox";
+import BoundingBox from "@/components/ui/BoundingBox";
 
 /* ─── Floating accent orbs (replace tiny particles with rich blurred shapes) ─── */
 const orbs = [

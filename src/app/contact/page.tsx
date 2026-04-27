@@ -3,8 +3,8 @@
 import { motion } from "motion/react";
 import { useForm, ValidationError } from "@formspree/react";
 import { PaperAirplaneIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
-import BoundingBox from '@/components/BoundingBox';
-import Navigation from '@/components/Navigation';
+import BoundingBox from '@/components/ui/BoundingBox';
+import Navigation from '@/layout/Navigation';
 
 export default function ContactPage() {
   const [state, handleSubmit] = useForm("xpqkkaoa");
