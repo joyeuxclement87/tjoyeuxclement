@@ -82,11 +82,9 @@ export default function WorkPreview() {
   return (
     <section ref={containerRef} id="work" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001a18 0%, #000e0d 50%, #001209 100%)" }}>
       {/* ─── Floating accent orb ─── */}
-      <motion.div
+      <div
         className="absolute top-[20%] left-[-5%] w-[550px] h-[550px] rounded-full pointer-events-none -z-10"
         style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(110px)" }}
-        animate={{ y: [0, -35, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
       {/* Dots pattern overlay (Different from grid) */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{

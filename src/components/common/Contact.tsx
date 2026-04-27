@@ -50,17 +50,13 @@ export default function Contact() {
     >
       {/* ── Background gradient orbs ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
+        <div
           className="absolute top-[-5%] left-[5%] w-[600px] h-[600px] rounded-full"
           style={{ background: "radial-gradient(circle, rgba(0,70,67,0.18) 0%, transparent 70%)", filter: "blur(100px)" }}
-          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
+        <div
           className="absolute bottom-[-10%] right-[0%] w-[500px] h-[500px] rounded-full"
           style={{ background: "radial-gradient(circle, rgba(245,185,21,0.06) 0%, transparent 70%)", filter: "blur(120px)" }}
-          animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 5 }}
         />
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 opacity-[0.02]" style={{

@@ -29,11 +29,9 @@ export default function Services() {
   return (
     <section id="services" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
       {/* ─── Floating accent orb ─── */}
-      <motion.div
+      <div
         className="absolute top-[30%] right-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
         style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(100px)" }}
-        animate={{ y: [0, -30, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{

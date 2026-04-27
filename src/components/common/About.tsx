@@ -26,17 +26,13 @@ export default function About() {
     <section ref={containerRef} id="about" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001a18 0%, #000e0d 50%, #001209 100%)" }}>
 
       {/* ─── Floating accent orbs ─── */}
-      <motion.div
+      <div
         className="absolute -top-20 right-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none -z-10"
         style={{ background: "radial-gradient(circle, rgba(245,185,21,0.06) 0%, transparent 70%)", filter: "blur(100px)" }}
-        animate={{ y: [0, -40, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         className="absolute bottom-0 left-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
         style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(120px)" }}
-        animate={{ y: [0, 30, 0], scale: [1, 1.08, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{

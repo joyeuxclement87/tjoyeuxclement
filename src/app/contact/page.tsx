@@ -58,17 +58,13 @@ export default function ContactPage() {
       <Navigation activeSection="contact" />
 
       {/* ─── Floating accent orbs ─── */}
-      <motion.div
+      <div
         className="fixed top-[20%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none z-0"
         style={{ background: "radial-gradient(circle, rgba(245,185,21,0.04) 0%, transparent 70%)", filter: "blur(80px)" }}
-        animate={{ y: [0, -35, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         className="fixed bottom-[10%] left-[-5%] w-[350px] h-[350px] rounded-full pointer-events-none z-0"
         style={{ background: "radial-gradient(circle, rgba(0,70,67,0.12) 0%, transparent 70%)", filter: "blur(100px)" }}
-        animate={{ y: [0, 25, 0], scale: [1, 1.08, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
 
       {/* Header */}

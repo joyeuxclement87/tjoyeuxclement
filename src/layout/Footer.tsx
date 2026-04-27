@@ -22,17 +22,13 @@ export default function Footer() {
 
       {/* ── Dark gradient orbs ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
+        <div
           className="absolute top-[-10%] left-[15%] w-[700px] h-[700px] rounded-full"
           style={{ background: "radial-gradient(circle, rgba(0,70,67,0.25) 0%, transparent 65%)", filter: "blur(120px)" }}
-          animate={{ scale: [1, 1.12, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
+        <div
           className="absolute bottom-[0%] right-[10%] w-[500px] h-[500px] rounded-full"
           style={{ background: "radial-gradient(circle, rgba(245,185,21,0.06) 0%, transparent 70%)", filter: "blur(100px)" }}
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 4 }}
         />
       </div>
 

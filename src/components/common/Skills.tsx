@@ -63,17 +63,13 @@ export default function Skills() {
   return (
     <section ref={containerRef} id="skills" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
       {/* ─── Floating accent orbs ─── */}
-      <motion.div 
+      <div 
         style={{ y: y1, background: "radial-gradient(circle, rgba(245,185,21,0.07) 0%, transparent 70%)", filter: "blur(100px)" }}
         className="absolute top-10 right-[-5%] w-[500px] h-[500px] rounded-full -z-10 pointer-events-none"
-        animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div 
+      <div 
         style={{ y: y2, background: "radial-gradient(circle, rgba(0,70,67,0.2) 0%, transparent 70%)", filter: "blur(120px)" }}
         className="absolute bottom-10 left-[-5%] w-[600px] h-[600px] rounded-full -z-10 pointer-events-none"
-        animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{

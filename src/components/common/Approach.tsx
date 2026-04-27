@@ -14,17 +14,13 @@ export default function Approach() {
     <section id="approach" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
 
       {/* ─── Floating accent orbs ─── */}
-      <motion.div
+      <div
         className="absolute top-[20%] left-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
         style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(100px)" }}
-        animate={{ y: [0, -30, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         className="absolute bottom-[10%] right-[-5%] w-[450px] h-[450px] rounded-full pointer-events-none -z-10"
         style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(120px)" }}
-        animate={{ y: [0, 25, 0], scale: [1, 1.08, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
       {/* Dots pattern overlay (Different from grid) */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{

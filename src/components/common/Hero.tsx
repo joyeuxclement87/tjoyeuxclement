@@ -57,30 +57,17 @@ export default function Hero() {
       <div className="absolute inset-0 z-20 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,18,9,0.7)_100%)]" />
 
       {/* ─── Floating accent orbs ─── */}
-      <motion.div
+      <div
         className="absolute top-[20%] left-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
         style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(100px)" }}
-        animate={{ y: [0, -30, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         className="absolute bottom-[10%] right-[-5%] w-[450px] h-[450px] rounded-full pointer-events-none -z-10"
         style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(120px)" }}
-        animate={{ y: [0, 25, 0], scale: [1, 1.08, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
 
       {/* ─── Soft radial glow behind text ─── */}
-      <motion.div
-        animate={{
-          scale: [1, 1.05, 1],
-          opacity: [0.03, 0.06, 0.03],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+      <div
         className="absolute top-[20%] left-[-10%] w-[800px] h-[800px] rounded-full pointer-events-none z-0"
         style={{ y: y2, background: "radial-gradient(circle, #f0ede5 0%, transparent 60%)" }}
       />
