@@ -130,9 +130,13 @@ export default function ContactPage() {
               <p className="text-[#f0ede5]/50 text-[10px] uppercase tracking-[0.3em] font-bold">Socials</p>
               <div className="space-y-3">
                 {[
-                  { name: "Instagram", url: "https://instagram.com/joyeuxclement87" },
-                  { name: "LinkedIn", url: "https://www.linkedin.com/in/tuyishimire-joyeux-clement-32418528a/" },
-                  { name: "Behance", url: "https://behance.net/joyeuxclement" },
+                  { name: "Behance",   url: "https://www.behance.net/joyeuxclement" },
+                  { name: "Instagram", url: "https://www.instagram.com/joyeuxclement87" },
+                  { name: "LinkedIn",  url: "https://www.linkedin.com/in/tuyishimire-joyeux-clement-32418528a/" },
+                  { name: "Twitter",   url: "https://twitter.com/joyeuxclement87" },
+                  { name: "TikTok",    url: "https://tiktok.com/@joyeuxclement87" },
+                  { name: "Facebook",  url: "https://facebook.com/joyeuxclement87" },
+                  { name: "GitHub",    url: "https://github.com/joyeuxclement87" },
                 ].map((social, i) => (
                   <motion.a
                     key={social.name}

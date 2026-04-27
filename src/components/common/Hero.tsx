@@ -237,8 +237,8 @@ export default function Hero() {
                 ))}
               </div>
               {/* Fade edges */}
-              <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#001209] to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#001a18] to-transparent z-10 pointer-events-none" />
+              {/* <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-[#001209] to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#001a18] to-transparent z-10 pointer-events-none" /> */}
             </motion.div>
 
             {/* CTA Buttons */}
