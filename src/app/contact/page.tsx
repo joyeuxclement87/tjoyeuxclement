@@ -1,63 +1,96 @@
 'use client';
 
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useForm, ValidationError } from "@formspree/react";
 import { PaperAirplaneIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { useState, useEffect } from 'react';
 import Navigation from '@/layout/Navigation';
 import FloatingActions from '@/components/ui/FloatingActions';
+import PageLoader from '@/components/ui/PageLoader';
 
 export default function ContactPage() {
   const [state, handleSubmit] = useForm("xpqkkaoa");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Only show loader for a short time on navigation
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (state.succeeded) {
     return (
-      <main className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18] flex flex-col items-center justify-center text-center px-6" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
-        <div className="background-glow" />
-        <Navigation activeSection="contact" />
-        
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          className="space-y-8 max-w-2xl"
-        >
-          <motion.div
-            className="w-20 h-20 bg-[#f5b915]/10 rounded-full flex items-center justify-center mx-auto text-[#f5b915]"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <PageLoader key="loader" />
+        ) : (
+          <motion.main 
+            key="success"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18] flex flex-col items-center justify-center text-center px-6" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}
           >
-            <CheckCircleIcon className="w-12 h-12" />
-          </motion.div>
-          <h1 className="text-5xl md:text-7xl font-bold font-display">Message Sent!</h1>
-          <p className="text-xl md:text-2xl text-[#f0ede5]/60 font-light leading-relaxed">
-            Thank you for reaching out. I&apos;ve received your message and will get back to you as soon as possible.
-          </p>
-          <motion.div
-            className="pt-8"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <button 
-              onClick={() => window.location.reload()}
-              className="group inline-flex items-center gap-3 px-10 py-5 bg-[#f5b915] text-[#004643] font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all duration-500 relative overflow-hidden"
+            <div className="background-glow" />
+            <Navigation activeSection="contact" />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              className="space-y-8 max-w-2xl"
             >
-              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
-              <span className="relative z-10">Send Another Message</span>
-            </button>
-          </motion.div>
-        </motion.div>
-      </main>
+              <motion.div
+                className="w-20 h-20 bg-[#f5b915]/10 rounded-full flex items-center justify-center mx-auto text-[#f5b915]"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              >
+                <CheckCircleIcon className="w-12 h-12" />
+              </motion.div>
+              <h1 className="text-5xl md:text-7xl font-bold font-display">Message Sent!</h1>
+              <p className="text-xl md:text-2xl text-[#f0ede5]/60 font-light leading-relaxed">
+                Thank you for reaching out. I&apos;ve received your message and will get back to you as soon as possible.
+              </p>
+              <motion.div
+                className="pt-8"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                <button 
+                  onClick={() => window.location.reload()}
+                  className="group inline-flex items-center gap-3 px-10 py-5 bg-[#f5b915] text-[#004643] font-bold text-xs uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all duration-500 relative overflow-hidden"
+                >
+                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+                  <span className="relative z-10">Send Another Message</span>
+                </button>
+              </motion.div>
+            </motion.div>
+          </motion.main>
+        )}
+      </AnimatePresence>
     );
   }
 
   return (
-    <main className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18]" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
-      <div className="background-glow" />
-      <Navigation activeSection="contact" />
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <PageLoader key="loader" />
+      ) : (
+        <motion.main 
+          key="contact"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18]" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}
+        >
+          <div className="background-glow" />
+          <Navigation activeSection="contact" />
 
-      {/* ─── Floating accent orbs ─── */}
-      <div
+          {/* ─── Floating accent orbs ─── */}
+          <div
         className="fixed top-[20%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none z-0"
         style={{ background: "radial-gradient(circle, rgba(245,185,21,0.04) 0%, transparent 70%)", filter: "blur(80px)" }}
       />
@@ -249,6 +282,8 @@ export default function ContactPage() {
             © {new Date().getFullYear()} T,joyeux clement. All Rights Reserved.
          </p>
       </footer>
-    </main>
+        </motion.main>
+      )}
+    </AnimatePresence>
   );
 }

@@ -84,27 +84,27 @@ export default function Home() {
           transition={{ duration: 0.5 }}
           className="min-h-screen relative overflow-hidden font-sans"
         >
-        <div className="background-glow" />
-        
-        <main className="relative">
-          <Header />
-          <Navigation activeSection={activeSection} />
+          <div className="background-glow" />
           
-          <section id="home">
-            <Hero />
-          </section>
+          <main className="relative">
+            <Header />
+            <Navigation activeSection={activeSection} />
+            
+            <section id="home">
+              <Hero />
+            </section>
 
-          <div className="mt-0">
-            <About />
-            <Skills />
-            <Approach />
-            <Services />
-            <WorkPreview />
-          </div>
-        </main>
+            <div className="mt-0">
+              <About />
+              <Skills />
+              <Approach />
+              <Services />
+              <WorkPreview />
+            </div>
+          </main>
 
-        <FloatingActions show={true} />
-        <Footer />
+          <FloatingActions show={true} />
+          <Footer />
         </motion.div>
       )}
     </AnimatePresence>

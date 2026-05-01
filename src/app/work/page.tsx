@@ -7,6 +7,7 @@ import Footer from '@/layout/Footer';
 import Navigation from '@/layout/Navigation';
 import ProjectModal from '@/components/ui/ProjectModal';
 import FloatingActions from '@/components/ui/FloatingActions';
+import PageLoader from '@/components/ui/PageLoader';
 import { client } from '@/sanity/lib/client';
 import { projectsQuery } from '@/sanity/lib/queries';
 import { Project } from '@/types';
@@ -107,6 +108,16 @@ export default function WorkPage() {
     fetchProjects();
   }, []);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Only show loader for a short time on navigation
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
   const activeProjects = sanityProjects.length > 0 ? sanityProjects : projects;
 
   const filteredProjects = activeProjects.filter(project => 
@@ -114,9 +125,21 @@ export default function WorkPage() {
   );
 
   return (
-    <main className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18]" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
-      <div className="background-glow" />
-      <Navigation activeSection="work" />
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <PageLoader key="loader" />
+      ) : (
+        <motion.main
+          key="content"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="min-h-screen text-[#f0ede5] selection:bg-[#f5b915] selection:text-[#001a18]" 
+          style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}
+        >
+          <div className="background-glow" />
+          <Navigation activeSection="work" />
 
       {/* ─── Floating accent orbs ─── */}
       <div
@@ -301,6 +324,8 @@ export default function WorkPage() {
           <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
         )}
       </AnimatePresence>
-    </main>
+        </motion.main>
+      )}
+    </AnimatePresence>
   );
 }
