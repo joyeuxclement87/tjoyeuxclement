@@ -10,6 +10,7 @@ import FloatingActions from '@/components/ui/FloatingActions';
 import { client } from '@/sanity/lib/client';
 import { projectsQuery } from '@/sanity/lib/queries';
 import { Project } from '@/types';
+import { AdjustmentsHorizontalIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const projects = [
   {
@@ -88,6 +89,7 @@ const filters = ['All', 'Branding', 'Posters', 'Print (PDF)', 'Web Projects', 'L
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [sanityProjects, setSanityProjects] = useState<Project[]>([]);
 
@@ -123,7 +125,7 @@ export default function WorkPage() {
       />
 
       {/* Header */}
-      <section className="pt-44 pb-12 px-6 lg:px-10 max-w-7xl mx-auto relative z-10">
+      <section className="pt-44 pb-12 px-6 lg:px-10 max-w-7xl mx-auto relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -158,12 +160,12 @@ export default function WorkPage() {
           </motion.p>
         </motion.div>
 
-        {/* Filter UI */}
+        {/* Filter UI - Desktop (Hidden on mobile) */}
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex flex-wrap justify-center gap-x-10 gap-y-6 border-t border-[#f0ede5]/10 pt-8"
+          className="hidden md:flex flex-wrap justify-center gap-x-10 gap-y-6 border-t border-[#f0ede5]/10 pt-8"
         >
           {filters.map((filter, i) => (
             <motion.button 
@@ -178,13 +180,61 @@ export default function WorkPage() {
               {filter}
               {activeFilter === filter && (
                 <motion.div 
-                  layoutId="activeFilter"
+                  layoutId="activeFilterDesktop"
                   className="absolute -bottom-1 left-0 w-full h-[1px] bg-[#f5b915]"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
             </motion.button>
           ))}
+        </motion.div>
+
+        {/* Filter UI - Mobile (Dropdown) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="md:hidden flex flex-col items-center border-t border-[#f0ede5]/10 pt-6 relative z-50"
+        >
+          <button
+            onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+            className="flex items-center justify-between w-full max-w-[280px] px-6 py-4 bg-[#f0ede5]/5 border border-[#f0ede5]/10 rounded-2xl text-[#f0ede5] hover:border-[#f5b915]/50 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <AdjustmentsHorizontalIcon className="w-5 h-5 text-[#f5b915]" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em]">{activeFilter}</span>
+            </div>
+            <motion.div animate={{ rotate: isMobileFilterOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
+              <ChevronDownIcon className="w-4 h-4 text-[#f0ede5]/50" />
+            </motion.div>
+          </button>
+
+          <AnimatePresence>
+            {isMobileFilterOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-[80px] w-full max-w-[280px] bg-[#001a18]/95 backdrop-blur-xl border border-[#f5b915]/20 rounded-2xl overflow-hidden shadow-2xl z-50"
+              >
+                {filters.map((filter) => (
+                  <button
+                    key={filter}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveFilter(filter);
+                      setIsMobileFilterOpen(false);
+                    }}
+                    className={`w-full text-left px-6 py-4 text-xs font-bold uppercase tracking-[0.2em] transition-colors border-b border-[#f0ede5]/5 last:border-b-0 relative z-[999]
+                      ${activeFilter === filter ? 'bg-[#f5b915]/10 text-[#f5b915]' : 'text-[#f0ede5]/60 hover:bg-[#f0ede5]/5 hover:text-[#f0ede5]'}`}
+                  >
+                    {filter}
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </section>
 
@@ -199,6 +249,7 @@ export default function WorkPage() {
               <motion.div
                 key={project.title}
                 layout
+                data-cursor="view"
                 initial={{ opacity: 0, scale: 0.92, filter: "blur(6px)" }}
                 animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                 exit={{ opacity: 0, scale: 0.92, filter: "blur(6px)" }}
