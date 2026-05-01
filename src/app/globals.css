@@ -17,11 +17,16 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    cursor: none;
   }
   body {
     @apply text-[var(--foreground)];
     background: var(--background);
     background-attachment: fixed;
+    cursor: none;
+  }
+  a, button, [role="button"], input, textarea, select, label {
+    cursor: none !important;
   }
 }
 

@@ -137,6 +137,7 @@ export default function WorkPreview() {
           {activeProjects.map((project, idx) => (
             <motion.div
               key={idx}
+              data-cursor="view"
               style={{ y: idx % 2 === 0 ? ySlow : yFast }}
               initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
