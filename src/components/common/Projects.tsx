@@ -1,7 +1,18 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import { PaintBrushIcon, DocumentTextIcon, ComputerDesktopIcon, ShareIcon } from '@heroicons/react/24/outline';
 
 export default function Services() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const yOrb1  = useTransform(scrollYProgress, [0, 1], [-60, 60]);
+  const yOrb2  = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const yTitle = useTransform(scrollYProgress, [0, 1], [40, -20]);
+
   const services = [
     {
       icon: PaintBrushIcon,
@@ -26,12 +37,20 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
-      {/* ─── Floating accent orb ─── */}
-      <div
+    <section ref={containerRef} id="services" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
+      {/* ─── Floating accent orbs (parallax) ─── */}
+      <motion.div
+        style={{ y: yOrb1 }}
         className="absolute top-[30%] right-[-8%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(100px)" }}
-      />
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, rgba(245,185,21,0.07) 0%, transparent 70%)", filter: "blur(100px)" }} />
+      </motion.div>
+      <motion.div
+        style={{ y: yOrb2 }}
+        className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none -z-10"
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, rgba(0,70,67,0.12) 0%, transparent 70%)", filter: "blur(110px)" }} />
+      </motion.div>
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
         backgroundImage: "linear-gradient(#f0ede5 1px, transparent 1px), linear-gradient(90deg, #f0ede5 1px, transparent 1px)",
@@ -40,6 +59,7 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
         <motion.div
+          style={{ y: yTitle }}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

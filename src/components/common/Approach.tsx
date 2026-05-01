@@ -1,7 +1,18 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import { LightBulbIcon, PencilIcon, SparklesIcon, CheckBadgeIcon } from "@heroicons/react/24/outline";
 
 export default function Approach() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const yContent = useTransform(scrollYProgress, [0, 1], [40, -40]);
+
   const steps = [
     { icon: LightBulbIcon, text: "Understand", sub: "the idea", number: "01" },
     { icon: PencilIcon, text: "Design", sub: "the solution", number: "02" },
@@ -10,16 +21,16 @@ export default function Approach() {
   ];
 
   return (
-    <section id="approach" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
+    <section ref={containerRef} id="approach" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
 
       {/* ─── Floating accent orbs ─── */}
-      <div
+      <motion.div
+        style={{ y: y1, background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(100px)" }}
         className="absolute top-[20%] left-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.05) 0%, transparent 70%)", filter: "blur(100px)" }}
       />
-      <div
+      <motion.div
+        style={{ y: y2, background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(120px)" }}
         className="absolute bottom-[10%] right-[-5%] w-[450px] h-[450px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(120px)" }}
       />
       {/* Dots pattern overlay (Different from grid) */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
@@ -27,7 +38,7 @@ export default function Approach() {
         backgroundSize: "24px 24px"
       }} />
 
-      <div className="max-w-5xl mx-auto px-4 lg:px-8 text-center">
+      <motion.div style={{ y: yContent }} className="max-w-5xl mx-auto px-4 lg:px-8 text-center">
         
         {/* Section Header */}
         <motion.div
@@ -151,7 +162,7 @@ export default function Approach() {
           </motion.p>
         </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }

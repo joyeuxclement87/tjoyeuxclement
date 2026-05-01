@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Unica_One, Montserrat } from 'next/font/google';
+import LenisProvider from '@/components/ui/LenisProvider';
 import "./globals.css";
 
 const unicaOne = Unica_One({
@@ -43,7 +44,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${unicaOne.variable} ${montserrat.variable} font-sans antialiased`}>
-        {children}
+        <LenisProvider>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );

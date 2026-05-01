@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Code, PaintBrush, Monitor, Icon } from "@phosphor-icons/react";
+import Counter from "@/components/ui/Counter";
 
 interface SkillItem {
   name: string;
@@ -56,20 +57,34 @@ export default function Skills() {
     offset: ["start end", "end start"]
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  // Multi-speed parallax layers
+  const y1        = useTransform(scrollYProgress, [0, 1], [-80,  80]);
+  const y2        = useTransform(scrollYProgress, [0, 1], [ 80, -80]);
+  const yHeading  = useTransform(scrollYProgress, [0, 1], [ 50, -30]);
+  const yCards    = useTransform(scrollYProgress, [0, 1], [ 30, -20]);
 
   return (
     <section ref={containerRef} id="skills" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001209 0%, #000e0d 50%, #001a18 100%)" }}>
-      {/* ─── Floating accent orbs ─── */}
+      {/* ─── Floating accent orbs (multi-speed parallax) ─── */}
       <motion.div 
-        style={{ y: y1, background: "radial-gradient(circle, rgba(245,185,21,0.07) 0%, transparent 70%)", filter: "blur(100px)" }}
+        style={{ y: y1 }}
         className="absolute top-10 right-[-5%] w-[500px] h-[500px] rounded-full -z-10 pointer-events-none"
-      />
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, rgba(245,185,21,0.08) 0%, transparent 70%)", filter: "blur(100px)" }} />
+      </motion.div>
       <motion.div 
-        style={{ y: y2, background: "radial-gradient(circle, rgba(0,70,67,0.2) 0%, transparent 70%)", filter: "blur(120px)" }}
+        style={{ y: y2 }}
         className="absolute bottom-10 left-[-5%] w-[600px] h-[600px] rounded-full -z-10 pointer-events-none"
-      />
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, rgba(0,70,67,0.2) 0%, transparent 70%)", filter: "blur(120px)" }} />
+      </motion.div>
+      {/* Centre depth orb */}
+      <motion.div
+        style={{ y: useTransform(scrollYProgress, [0, 1], [20, -40]) }}
+        className="absolute top-[45%] left-[35%] w-[350px] h-[350px] rounded-full -z-10 pointer-events-none"
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, rgba(245,185,21,0.04) 0%, transparent 70%)", filter: "blur(90px)" }} />
+      </motion.div>
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
         backgroundImage: "linear-gradient(#f0ede5 1px, transparent 1px), linear-gradient(90deg, #f0ede5 1px, transparent 1px)",
@@ -78,8 +93,9 @@ export default function Skills() {
 
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         
-        {/* Section Header */}
+        {/* Section Header - slight parallax */}
         <motion.div
+          style={{ y: yHeading }}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -107,7 +123,7 @@ export default function Skills() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div style={{ y: yCards }} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skills.map((category, idx) => (
             <motion.div
               key={idx}
@@ -136,15 +152,13 @@ export default function Skills() {
                   <div key={i} className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-[#f0ede5]/85">{item.name}</span>
-                      <motion.span
-                        className="text-[#f5b915] font-mono"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.8 + (i * 0.1) }}
-                      >
-                        {item.level}%
-                      </motion.span>
+                      {/* Counting number for % */}
+                      <span className="text-[#f5b915] font-mono tabular-nums">
+                        <Counter
+                          value={item.level}
+                          delay={0.3 + idx * 0.15 + i * 0.08}
+                        />%
+                      </span>
                     </div>
                     <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                       <motion.div 
@@ -172,7 +186,7 @@ export default function Skills() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

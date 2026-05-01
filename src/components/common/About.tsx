@@ -1,6 +1,13 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
+import Counter from "@/components/ui/Counter";
+
+/* ─── Stats data ─── */
+const stats = [
+  { value: 5,  suffix: "+", label: "Years Experience" },
+  { value: 50, suffix: "+", label: "Projects Done" },
+];
 
 /* ─── Stagger orchestrator ─── */
 const stagger = {
@@ -18,21 +25,37 @@ export default function About() {
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const imgScale = useTransform(scrollYProgress, [0, 0.5], [1.08, 1]);
+  // Multi-layer parallax
+  const yOrb1   = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+  const yOrb2   = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const y       = useTransform(scrollYProgress, [0, 1], [70, -70]);
+  const yRight  = useTransform(scrollYProgress, [0, 1], [30, -50]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.5], [1.1, 1]);
+  const opacity  = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0.6]);
 
   return (
     <section ref={containerRef} id="about" className="py-32 relative overflow-hidden" style={{ background: "linear-gradient(160deg, #001a18 0%, #000e0d 50%, #001209 100%)" }}>
 
-      {/* ─── Floating accent orbs ─── */}
-      <div
+      {/* ─── Floating accent orbs (parallax layers) ─── */}
+      <motion.div
+        style={{ y: yOrb1 }}
         className="absolute -top-20 right-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(245,185,21,0.06) 0%, transparent 70%)", filter: "blur(100px)" }}
-      />
-      <div
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, rgba(245,185,21,0.08) 0%, transparent 70%)", filter: "blur(100px)" }} />
+      </motion.div>
+      <motion.div
+        style={{ y: yOrb2 }}
         className="absolute bottom-0 left-[-10%] w-[500px] h-[500px] rounded-full pointer-events-none -z-10"
-        style={{ background: "radial-gradient(circle, rgba(0,70,67,0.15) 0%, transparent 70%)", filter: "blur(120px)" }}
-      />
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, rgba(0,70,67,0.2) 0%, transparent 70%)", filter: "blur(120px)" }} />
+      </motion.div>
+      {/* Extra subtle orb for depth */}
+      <motion.div
+        style={{ y: useTransform(scrollYProgress, [0, 1], [0, 60]) }}
+        className="absolute top-[50%] left-[40%] w-[300px] h-[300px] rounded-full pointer-events-none -z-10"
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, rgba(245,185,21,0.04) 0%, transparent 70%)", filter: "blur(80px)" }} />
+      </motion.div>
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{
         backgroundImage: "linear-gradient(#f0ede5 1px, transparent 1px), linear-gradient(90deg, #f0ede5 1px, transparent 1px)",
@@ -74,7 +97,7 @@ export default function About() {
           
           {/* Left Column - Image */}
           <motion.div
-            style={{ y }}
+            style={{ y, opacity }}
             initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -118,6 +141,7 @@ export default function About() {
 
           {/* Right Column - Content */}
           <motion.div
+            style={{ y: yRight }}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -156,7 +180,7 @@ export default function About() {
               </motion.p>
             </div>
 
-            {/* Stats */}
+            {/* Stats with counting animation */}
             <motion.div
               className="grid grid-cols-2 gap-8 pt-8 border-t border-[#f0ede5]/10"
               initial={{ opacity: 0, y: 20 }}
@@ -164,22 +188,17 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ delay: stagger.stats.delay, duration: stagger.stats.duration }}
             >
-              {[
-                { number: "05", suffix: "+", label: "Years Experience" },
-                { number: "50", suffix: "+", label: "Projects Done" },
-              ].map((stat, i) => (
+              {stats.map((stat, i) => (
                 <div key={i} className="space-y-1 group cursor-default">
                   <div className="flex items-baseline gap-0.5">
-                    <motion.p
-                      className="text-3xl font-display font-bold text-[#f0ede5] group-hover:text-[#f5b915] transition-colors duration-500"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: stagger.stats.delay + (i * 0.15), duration: 0.5, ease: "easeOut" }}
-                    >
-                      {stat.number}
-                    </motion.p>
-                    <span className="text-[#f5b915] text-2xl font-bold">{stat.suffix}</span>
+                    <p className="text-5xl font-display font-bold text-[#f0ede5] group-hover:text-[#f5b915] transition-colors duration-500 tabular-nums">
+                      <Counter
+                        value={stat.value}
+                        padZero={stat.value < 10}
+                        delay={stagger.stats.delay + i * 0.2}
+                      />
+                    </p>
+                    <span className="text-[#f5b915] text-3xl font-bold">{stat.suffix}</span>
                   </div>
                   <p className="text-[#f0ede5]/60 text-[10px] uppercase tracking-widest font-bold">{stat.label}</p>
                 </div>
