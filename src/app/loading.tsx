@@ -12,7 +12,7 @@ export default function Loading() {
       
       <div className="relative flex flex-col items-center z-10 space-y-4">
         <div className="text-[#f0ede5] font-display text-xl font-bold uppercase tracking-[0.2em] opacity-50 animate-pulse">
-          Loading...
+          Loading....
         </div>
       </div>
     </div>
